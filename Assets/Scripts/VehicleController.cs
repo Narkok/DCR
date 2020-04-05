@@ -12,16 +12,9 @@ public class VehicleController : MonoBehaviour
 
     private void initBlumb() {
         if (blumbType == BlumbType.None) return;
-        GameObject blumb = Generator.loadPrefab("Blumb");
+        GameObject blumb = GOManager.Load("Blumb");
         WheelVehicle vehicle = GetComponent<WheelVehicle>();
         blumb.GetComponent<Blumb>().Set(vehicle, blumbType);
         Instantiate(blumb);
-    }
-}
-
-
-public class Generator {
-    public static GameObject loadPrefab(string path) {
-        return (GameObject)Resources.Load(path);
     }
 }
