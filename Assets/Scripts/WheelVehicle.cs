@@ -11,16 +11,16 @@ public class WheelVehicle : MonoBehaviour {
     [SerializeField] bool isPlayer = true;
     public bool IsPlayer {
         get { return isPlayer; }
-        set{ isPlayer = value; }
+        set { isPlayer = value; }
     } 
 
     // Input names to read using GetAxis
-    [SerializeField] string throttleInput = "Vertical";
-    [SerializeField] string brakeInput = "Brake";
-    [SerializeField] string turnInput = "Horizontal";
-    [SerializeField] string jumpInput = "Jump";
-    [SerializeField] string driftInput = "Drift";
-	[SerializeField] string boostInput = "Boost";
+    [SerializeField] string throttleInput = "Vertical"; // W & S
+    [SerializeField] string brakeInput = "Brake";       // SPACE
+    [SerializeField] string turnInput = "Horizontal";   // A & D
+    [SerializeField] string jumpInput = "Jump";         // J
+    [SerializeField] string driftInput = "Drift";       // H
+	[SerializeField] string boostInput = "Boost";       // LEFT SHIFT
 
         
     /* 
@@ -33,7 +33,6 @@ public class WheelVehicle : MonoBehaviour {
     [SerializeField] WheelCollider[] driveWheel;
     public WheelCollider[] DriveWheel { get { return driveWheel; } }
     [SerializeField] WheelCollider[] turnWheel;
-
     public WheelCollider[] TurnWheel { get { return turnWheel; } }
 
     // This code checks if the car is grounded only when needed and the data is old enough
@@ -213,11 +212,9 @@ public class WheelVehicle : MonoBehaviour {
 
         // Get all the inputs!
         if (isPlayer) {
+            handbrake = GetInput(brakeInput) > 0;
             // Accelerate & brake
-            if (throttleInput != "" && throttleInput != null)
-            {
-                throttle = GetInput(throttleInput) - GetInput(brakeInput);
-            }
+            throttle = GetInput(throttleInput) - GetInput(brakeInput);
             // Boost
             boosting = (GetInput(boostInput) > 0.5f);
             // Turn
@@ -314,9 +311,6 @@ public class WheelVehicle : MonoBehaviour {
             _rb.AddForce(driftForce * driftIntensity, ForceMode.Force);
             _rb.AddTorque(driftTorque * driftIntensity, ForceMode.VelocityChange);             
         }
-            
-        // Downforce
-        _rb.AddForce(-transform.up * speed * downforce);
     }
 
     public void deactivateHandbreak() {
