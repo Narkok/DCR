@@ -22,7 +22,15 @@ public class Blumb : MonoBehaviour
     }
 
 
-    private void Awake() {
+    private void Clear() {
+        for (int i = 0; i < transform.childCount; i++) {
+            Destroy(transform.GetChild(i).gameObject);
+        }
+    }
+
+
+    private void Setup() {
+        Clear();
         if (type == BlumbType.None) return; 
         HingeJoint joint = GetComponent<HingeJoint>();
         Transform attachPoint = vehicle.transform.Find("BlumbAttachPoint").transform;
@@ -32,6 +40,11 @@ public class Blumb : MonoBehaviour
         joint.anchor = new Vector3(1, -lenght, 0);
         GameObject blumb = GOManager.Create(type.Path(), transform);
         blumb.transform.localRotation = vehicle.transform.localRotation;
+    }
+
+
+    private void Awake() {
+        Setup();
     }
 }
 
