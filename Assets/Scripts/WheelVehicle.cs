@@ -13,15 +13,6 @@ public class WheelVehicle : MonoBehaviour {
         get { return isPlayer; }
         set { isPlayer = value; }
     } 
-
-    // Input names to read using GetAxis
-    [SerializeField] string throttleInput = "Vertical"; // W & S
-    [SerializeField] string brakeInput = "Brake";       // SPACE
-    [SerializeField] string turnInput = "Horizontal";   // A & D
-    [SerializeField] string jumpInput = "Jump";         // J
-    [SerializeField] string driftInput = "Drift";       // H
-	[SerializeField] string boostInput = "Boost";       // LEFT SHIFT
-
         
     /* 
         *  Turn input curve: x real input, y value used
@@ -212,17 +203,17 @@ public class WheelVehicle : MonoBehaviour {
 
         // Get all the inputs!
         if (isPlayer) {
-            handbrake = GetInput(brakeInput) > 0;
+            handbrake = InputManager.isActive(InputManager.Break);
             // Accelerate & brake
-            throttle = GetInput(throttleInput) - GetInput(brakeInput);
+            throttle = InputManager.Input(InputManager.Throttle) - InputManager.Input(InputManager.Break);
             // Boost
-            boosting = (GetInput(boostInput) > 0.5f);
+            boosting = InputManager.isActive(InputManager.Boost);
             // Turn
-            steering = turnInputCurve.Evaluate(GetInput(turnInput)) * steerAngle;
+            steering = turnInputCurve.Evaluate(InputManager.Input(InputManager.Turn)) * steerAngle;
             // Dirft
-            drift = GetInput(driftInput) > 0 && _rb.velocity.sqrMagnitude > 100;
+            drift = InputManager.isActive(InputManager.Drift) && _rb.velocity.sqrMagnitude > 100;
             // Jump
-            jumping = GetInput(jumpInput) != 0;
+            jumping = InputManager.isActive(InputManager.Jump);
         }
 
         // Direction
@@ -319,9 +310,5 @@ public class WheelVehicle : MonoBehaviour {
 
     public void activateHandbrake() {
         handbrake = true;
-    }
-
-    private float GetInput(string input) {
-        return Input.GetAxis(input);
     }
 }

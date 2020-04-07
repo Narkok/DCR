@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Blumb : MonoBehaviour
 {
-
     public WheelVehicle vehicle;
     public BlumbType type;
 
@@ -56,7 +56,6 @@ public enum BlumbType {
 
 
 public static class BlumbTypeExtention {
-
     public static string Path(this BlumbType type) {
         switch (type) {
             case BlumbType.Skull: { return "Blumbs/Skull"; }

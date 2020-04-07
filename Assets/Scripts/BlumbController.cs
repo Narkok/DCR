@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class VehicleController : MonoBehaviour
+public class BlumbController : MonoBehaviour
 {
     public BlumbType blumbType;
 
