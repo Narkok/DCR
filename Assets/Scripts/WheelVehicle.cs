@@ -211,7 +211,7 @@ public class WheelVehicle : MonoBehaviour {
             // Turn
             steering = turnInputCurve.Evaluate(InputManager.Input(InputManager.Turn)) * steerAngle;
             // Dirft
-            drift = InputManager.isActive(InputManager.Drift) && _rb.velocity.sqrMagnitude > 100;
+            drift = InputManager.isActive(InputManager.Drift) && (_rb.velocity.sqrMagnitude > 100) || handbrake;
             // Jump
             jumping = InputManager.isActive(InputManager.Jump);
         }
