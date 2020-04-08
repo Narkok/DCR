@@ -6,14 +6,16 @@ using UnityEngine;
 
 public class GravityBody: MonoBehaviour
 {
-    GravityAttractor gravityCenter;
+    Transform _transform;
+    Rigidbody _rigidbody;
 
     void Awake() {
-        gravityCenter = GameObject.FindGameObjectWithTag("GravityCenter").GetComponent<GravityAttractor>();
-        GetComponent<Rigidbody>().useGravity = false;
+        _transform = transform;
+        _rigidbody = GetComponent<Rigidbody>();
+        _rigidbody.useGravity = false;
     }
 
     private void FixedUpdate() {
-        gravityCenter.Attract(transform);
+        SceneManager.Shared.Arena.GravityProcessor.Process(_transform, _rigidbody);
     }
 }

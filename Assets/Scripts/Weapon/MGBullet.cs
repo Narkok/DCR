@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MGBullet : MonoBehaviour
+public class MGBullet: MonoBehaviour
 {
     public const WeaponType weaponType = WeaponType.MachineGun;
 
