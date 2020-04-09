@@ -2,13 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MGBullet: MonoBehaviour
-{
-    public const WeaponType weaponType = WeaponType.MachineGun;
+
+[RequireComponent (typeof (Ammo))]
+
+public class Ammo: MonoBehaviour {
+
+    [SerializeField] public WeaponType weaponType;
+
 
     private void Start() {
-        StartCoroutine(SelfDestruction());
+        //StartCoroutine(SelfDestruction());
     }
+
 
     private IEnumerator SelfDestruction() {
         yield return new WaitForSeconds(weaponType.LifeTime());

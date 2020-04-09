@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 7448394668993427148}
   - component: {fileID: 1698031590204852025}
   - component: {fileID: 582854750865139418}
-  - component: {fileID: 3667639561478649346}
+  - component: {fileID: 114933424053854294}
+  - component: {fileID: 5545018101674991393}
   m_Layer: 9
-  m_Name: SimpleBullet
+  m_Name: MGBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -92,7 +93,7 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3667639561478649346
+--- !u!114 &114933424053854294
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -101,6 +102,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 6120403874184302488}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e580f1c2d79a8455c98c7d1895081600, type: 3}
+  m_Script: {fileID: 11500000, guid: 7328f6536bb79402a91b112acc5306f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponType: 0
+--- !u!114 &5545018101674991393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6120403874184302488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a07ead7f742eb440489793ed5af211b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

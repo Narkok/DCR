@@ -30,8 +30,7 @@ public class WeaponController : MonoBehaviour
     }
 
 
-    void Update()
-    {
+    void Update() {
         if (InputManager.isActive(InputManager.LClick)) {
             machineGun.Shoot();
         }
