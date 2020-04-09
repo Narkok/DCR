@@ -372,6 +372,7 @@ GameObject:
   m_Component:
   - component: {fileID: 904550382916389137}
   - component: {fileID: 7982537933623790374}
+  - component: {fileID: 672570616314395441}
   m_Layer: 0
   m_Name: GravityProcessor
   m_TagString: Untagged
@@ -406,6 +407,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gravity: 9.8
+--- !u!64 &672570616314395441
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7256216196025855354}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &9208900707479109475
 GameObject:
   m_ObjectHideFlags: 0

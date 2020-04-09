@@ -11,7 +11,7 @@ public class Ammo: MonoBehaviour {
 
 
     private void Start() {
-        //StartCoroutine(SelfDestruction());
+        StartCoroutine(SelfDestruction());
     }
 
 
