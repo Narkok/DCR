@@ -2,9 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
-[RequireComponent (typeof (Ammo))]
-
 public class Ammo: MonoBehaviour {
 
     [SerializeField] public WeaponType weaponType;

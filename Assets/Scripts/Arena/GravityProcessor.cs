@@ -19,6 +19,11 @@ public class GravityProcessor: MonoBehaviour {
     }
 
 
+    public Vector3 Closest(Vector3 point) {
+        return _vertices.Closest(point);
+    }
+
+
     public void Process(Transform transform, Rigidbody rigidbody){
         Vector3 position = transform.position;
         Vector3 targetDir = (position - _vertices.Closest(position)).normalized;

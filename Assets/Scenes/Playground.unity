@@ -317,6 +317,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Test Car Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 6847543321975528878, guid: 5c3cbeb4e041d420e85ddac7b7f5001f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6850680960298647276, guid: 5c3cbeb4e041d420e85ddac7b7f5001f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -502,6 +507,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114391695480690562, guid: 5c3cbeb4e041d420e85ddac7b7f5001f,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6847543321975528878, guid: 5c3cbeb4e041d420e85ddac7b7f5001f,
         type: 3}
       propertyPath: m_Name
