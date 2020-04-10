@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e8c9a8b46df4f4f77a7b78f73823af82
+guid: 33ed719363e624666bdf48f27cc6c391
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -8,7 +8,7 @@ ModelImporter:
     2100000: No Name
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Icosphere
+    4300000: Tetrahedron
   externalObjects: {}
   materials:
     importMaterials: 1
