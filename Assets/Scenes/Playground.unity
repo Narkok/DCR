@@ -268,8 +268,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shader: {fileID: 4800000, guid: 95703b29f49b899499233ea7308bb800, type: 3}
-  BlockCount: 512
-  FPS: 30
+  BlockCount: 575
 --- !u!1001 &904184257
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -511,6 +510,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6847543321975528877, guid: 5c3cbeb4e041d420e85ddac7b7f5001f,
+        type: 3}
+      propertyPath: blumbType
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6847543321975528878, guid: 5c3cbeb4e041d420e85ddac7b7f5001f,
         type: 3}

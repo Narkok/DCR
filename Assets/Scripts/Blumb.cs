@@ -51,7 +51,8 @@ public class Blumb: MonoBehaviour {
 
 public enum BlumbType {
     None,
-    Skull
+    Skull,
+    Luci
 }
 
 
@@ -59,6 +60,7 @@ public static class BlumbTypeExtention {
     public static string Path(this BlumbType type) {
         switch (type) {
             case BlumbType.Skull: { return "Blumbs/Skull"; }
+            case BlumbType.Luci: { return "Blumbs/Luci"; }
             default: return "";
         }
     }

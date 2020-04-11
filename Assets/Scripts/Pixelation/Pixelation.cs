@@ -7,8 +7,7 @@ namespace Assets.Pixelation.Scripts
     [AddComponentMenu("Image Effects/Color Adjustments/Pixelation")]
     public class Pixelation : ImageEffectBase
     {
-        [Range(64.0f, 512.0f)] public float BlockCount = 300;
-        [Range(5, 60)] public int FPS = 30;
+        [Range(64.0f, 1024.0f)] public float BlockCount = 300;
 
         private void OnRenderImage(RenderTexture source, RenderTexture destination)
         {
@@ -19,12 +18,6 @@ namespace Assets.Pixelation.Scripts
             material.SetVector("BlockCount", count);
             material.SetVector("BlockSize", size);
             Graphics.Blit(source, destination, material);
-        }
-
-        private void Start()
-        {
-            QualitySettings.vSyncCount = 0;
-            Application.targetFrameRate = FPS;
         }
     }
 }
