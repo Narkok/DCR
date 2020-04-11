@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BlumbController: MonoBehaviour
-{
-    public BlumbType blumbType;
+
+public class BlumbController: MonoBehaviour {
+
+    [SerializeField] public BlumbType blumbType;
+
 
     void Awake() {
         if (blumbType == BlumbType.None) return;

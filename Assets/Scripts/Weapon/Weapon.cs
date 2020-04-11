@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class Weapon: MonoBehaviour
-{
+public class Weapon: MonoBehaviour {
+
     private bool isAvalaible = true;
     public WeaponType type;
     public int AmmoCount = 0;

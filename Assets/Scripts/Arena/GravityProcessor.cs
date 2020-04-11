@@ -4,8 +4,7 @@ using UnityEngine;
 using System.Linq;
 
 
-[RequireComponent (typeof (MeshCollider))]
-
+[RequireComponent(typeof(MeshCollider))]
 public class GravityProcessor: MonoBehaviour {
 
     [SerializeField] public float gravity = 9.8f;

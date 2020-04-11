@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class Blumb : MonoBehaviour
-{
+public class Blumb: MonoBehaviour {
+
     public WheelVehicle vehicle;
     public BlumbType type;
 

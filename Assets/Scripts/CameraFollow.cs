@@ -2,19 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraFollow : MonoBehaviour {
+
+public class CameraFollow: MonoBehaviour {
     
     [SerializeField] private float smoothTime = 12f;
     [SerializeField] private Transform positionTarget;
     [SerializeField] private Transform lookAtTarget;
 
+    private Transform _transform;
+
+
     void Awake() {
-        transform.position = positionTarget.transform.position;
-        transform.LookAt(lookAtTarget);
+        _transform = transform;
+        _transform.position = positionTarget.position;
+        _transform.LookAt(lookAtTarget);
     }
 
+
     void FixedUpdate() {
-        transform.position = Vector3.Lerp(transform.position, positionTarget.transform.position, smoothTime * Time.fixedDeltaTime);
-        transform.LookAt(lookAtTarget);
+        _transform.position = Vector3.Lerp(_transform.position, positionTarget.position, smoothTime * Time.fixedDeltaTime);
+        _transform.LookAt(lookAtTarget);
     }
 }

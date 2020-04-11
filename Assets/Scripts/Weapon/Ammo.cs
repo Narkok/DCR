@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Ammo: MonoBehaviour {
 
     [SerializeField] public WeaponType weaponType;

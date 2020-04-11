@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-[RequireComponent (typeof (Ammo))]
+[RequireComponent(typeof(Ammo))]
+public class GlidingBody: MonoBehaviour {
 
-public class GlidingBody : MonoBehaviour
-{
     private float _speed;
     private Transform _transform;
 

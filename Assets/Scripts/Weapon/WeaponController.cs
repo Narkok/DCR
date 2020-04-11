@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class WeaponController : MonoBehaviour
-{
+
+public class WeaponController: MonoBehaviour {
+
     private List<WeaponAttachPoint> attachPoints;
     private List<WeaponAttachPoint> freeAttachPoints;
     private Weapon machineGun;
+
     //private Weapon selectedWeapon;
     //private List<Weapon> weapons;
     
@@ -46,9 +48,4 @@ public class WeaponController : MonoBehaviour
     //    weapon.SetType(weaponType);
     //    if (selectedWeapon == null) { selectedWeapon = weapon; }
     //}
-
-
-    void Start() {
-    }
-
 }
