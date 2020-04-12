@@ -5,22 +5,22 @@ using UnityEngine;
 
 public class CameraFollow: MonoBehaviour {
     
-    [SerializeField] private float smoothTime = 12f;
-    [SerializeField] private Transform positionTarget;
-    [SerializeField] private Transform lookAtTarget;
+    [SerializeField] public float smoothTime = 12f;
 
     private Transform _transform;
+    private Transform _positionTarget;
+    private Transform _lookAtTarget;
 
 
-    void Awake() {
+    public void Set(Transform followVehicle) {
         _transform = transform;
-        _transform.position = positionTarget.position;
-        _transform.LookAt(lookAtTarget);
+        _lookAtTarget = followVehicle.Find("CameraLookAtTarget");
+        _positionTarget = followVehicle.Find("CameraPositionTarget");
     }
 
 
     void FixedUpdate() {
-        _transform.position = Vector3.Lerp(_transform.position, positionTarget.position, smoothTime * Time.fixedDeltaTime);
-        _transform.LookAt(lookAtTarget);
+        _transform.position = Vector3.Lerp(_transform.position, _positionTarget.position, smoothTime * Time.fixedDeltaTime);
+        _transform.LookAt(_lookAtTarget);
     }
 }

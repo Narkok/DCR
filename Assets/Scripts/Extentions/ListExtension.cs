@@ -18,4 +18,16 @@ public static class ListExtention {
         }
         return closestPoint;
     }
+
+
+    public static Vector3 Random(this List<Vector3> list) {
+        if (!list.Any()) { return new Vector3(); }
+        return list[UnityEngine.Random.Range(0, list.Count)];
+    }
+
+
+    public static Vector3 Random(this Vector3[] list) {
+        if (!list.Any()) { return new Vector3(); }
+        return list[UnityEngine.Random.Range(0, list.Length)];
+    }
 }

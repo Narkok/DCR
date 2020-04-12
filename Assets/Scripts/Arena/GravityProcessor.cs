@@ -10,6 +10,8 @@ public class GravityProcessor: MonoBehaviour {
     [SerializeField] public float gravity = 9.8f;
     private List<Vector3> _vertices;
 
+    public Vector3 RangomPoint { get { return _vertices.Random(); } }
+
 
     private void Awake() {
         _vertices = new HashSet<Vector3>(GetComponent<MeshCollider>().sharedMesh.vertices)

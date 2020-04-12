@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class Blumb: MonoBehaviour {
 
-    public WheelVehicle vehicle;
-    public BlumbType type;
+    private Vehicle vehicle;
+    private BlumbType type;
 
     [Range(1.5f, 4f)]
     [SerializeField] float lenght = 2.8f;
@@ -16,9 +16,10 @@ public class Blumb: MonoBehaviour {
     }
 
 
-    public void Set(WheelVehicle vehicle, BlumbType type) {
+    public void Set(Vehicle vehicle, BlumbType type) {
         this.vehicle = vehicle;
         this.type = type;
+        Setup();
     }
 
 

@@ -20,6 +20,11 @@ public static class InputManager {
 
 
     public static bool isActive(string input) {
+        
         return UnityEngine.Input.GetAxis(input) > 0;
+    }
+
+    public static bool Debug(KeyCode code) {
+        return UnityEngine.Input.GetKeyDown(code);
     }
 }

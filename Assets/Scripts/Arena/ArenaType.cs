@@ -4,14 +4,16 @@ using UnityEngine;
 
 
 public enum ArenaType {
-    TestSphere
+    Sphere,
+    Torus
 }
 
 
 public static class ArenaTypeExtension {
     public static string ArenaPath(this ArenaType type) {
         switch (type) {
-            case ArenaType.TestSphere: { return "Arenas/Sphere"; }
+            case ArenaType.Sphere: { return "Arenas/Sphere"; }
+            case ArenaType.Torus: { return "Arenas/Torus"; }
             default: return "";
         }
     } 

@@ -5,16 +5,11 @@ using UnityEngine;
 
 [RequireComponent(typeof(MeshFilter))]
 [RequireComponent(typeof(MeshCollider))]
-[ExecuteInEditMode]
+//[ExecuteInEditMode]
 public class Inverted: MonoBehaviour {
     
     void Awake() {
-        InvertSphere();
-    }
-
-
-    void InvertSphere() {
-        Mesh mesh = GetComponent<MeshFilter>().sharedMesh;
+        Mesh mesh = GetComponent<MeshFilter>().mesh;
 
         Vector3[] normals = mesh.normals;
         for(int i = 0; i < normals.Length; i++) {
