@@ -11,6 +11,8 @@ public class CameraFollow: MonoBehaviour {
     private Transform _positionTarget;
     private Transform _lookAtTarget;
 
+    private float updatingSmooth = 0f;
+
 
     public void Set(Transform followVehicle) {
         _transform = transform;
@@ -20,7 +22,8 @@ public class CameraFollow: MonoBehaviour {
 
 
     void FixedUpdate() {
-        _transform.position = Vector3.Lerp(_transform.position, _positionTarget.position, smoothTime * Time.fixedDeltaTime);
+        _transform.position = Vector3.Lerp(_transform.position, _positionTarget.position, updatingSmooth * Time.fixedDeltaTime);
         _transform.LookAt(_lookAtTarget);
+        if (updatingSmooth < smoothTime) { updatingSmooth += 0.02f; }
     }
 }

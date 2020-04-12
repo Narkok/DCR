@@ -145,16 +145,16 @@ MonoBehaviour:
   vehiclesInfo:
   - isPlayer: 1
     vehicle: 0
-    blumb: 1
+    blumb: 0
   - isPlayer: 0
     vehicle: 1
-    blumb: 2
-  - isPlayer: 1
+    blumb: 0
+  - isPlayer: 0
     vehicle: 0
-    blumb: 1
-  - isPlayer: 1
+    blumb: 0
+  - isPlayer: 0
     vehicle: 0
-    blumb: 2
+    blumb: 0
 --- !u!4 &266823875
 Transform:
   m_ObjectHideFlags: 0

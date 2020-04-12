@@ -36,9 +36,9 @@ public class Vehicle: MonoBehaviour {
 
     private void SetupBlumb() {
         if (blumbType == BlumbType.None) return;
-        GameObject blumb = GOManager.Create("Blumbs/Blumb");
-        WheelVehicle vehicle = GetComponent<WheelVehicle>();
-        blumb.GetComponent<Blumb>().Set(this, blumbType);
+        GOManager.Create("Blumbs/Blumb")
+            .GetComponent<Blumb>()
+            .Set(this, blumbType);
     }
 
 
