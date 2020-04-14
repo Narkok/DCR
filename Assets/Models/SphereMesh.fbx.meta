@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 5c7f79b2bd0384c78806731aa5937fce
+guid: 1db25bdc2679d4966839f98b3bc1bb18
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -8,7 +8,7 @@ ModelImporter:
     2100000: No Name
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Sphere
+    4300000: SphereMesh
   externalObjects: {}
   materials:
     importMaterials: 1
