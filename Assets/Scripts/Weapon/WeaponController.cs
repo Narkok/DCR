@@ -26,9 +26,9 @@ public class WeaponController: MonoBehaviour {
     void SetupMG() {
         WeaponAttachPoint attachPoint = freeAttachPoints[Random.Range(0, freeAttachPoints.Count)];
         freeAttachPoints.Remove(attachPoint);
-        GameObject weapon = GOManager.Create(WeaponType.MachineGun.WeaponPath(), attachPoint.transform);
+        GameObject weapon = GOManager.Create(WeaponType.Cannon.WeaponPath(), attachPoint.transform);
         machineGun = weapon.GetComponent<Weapon>();
-        machineGun.SetType(WeaponType.MachineGun);
+        machineGun.SetType(WeaponType.Cannon);
     }
 
 
