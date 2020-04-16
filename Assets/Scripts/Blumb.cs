@@ -38,7 +38,7 @@ public class Blumb: MonoBehaviour {
         joint.connectedBody = vehicle.GetComponent<Rigidbody>();
         joint.connectedAnchor = attachPoint.localPosition;
         joint.axis = attachPoint.transform.right;
-        joint.anchor = new Vector3(1, -lenght, 0);
+        joint.anchor = -lenght * attachPoint.transform.up.normalized;
         GameObject blumb = GOManager.Create(type.Path(), transform);
         blumb.transform.localRotation = vehicle.transform.localRotation;
     }
@@ -53,7 +53,8 @@ public class Blumb: MonoBehaviour {
 public enum BlumbType {
     None,
     Skull,
-    Luci
+    Luci,
+    Creeper
 }
 
 
@@ -62,6 +63,7 @@ public static class BlumbTypeExtention {
         switch (type) {
             case BlumbType.Skull: { return "Blumbs/Skull"; }
             case BlumbType.Luci: { return "Blumbs/Luci"; }
+            case BlumbType.Creeper: { return "Blumbs/Creeper"; }
             default: return "";
         }
     }
