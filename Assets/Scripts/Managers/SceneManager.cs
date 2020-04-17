@@ -17,17 +17,19 @@ public class SceneManager: MonoBehaviour {
 
     [SerializeField] Vehicle.Data[] vehiclesInfo;
     private List<Vehicle> _vehicles = new List<Vehicle>();
+    private List<Stuff> _stuffs = new List<Stuff>();
 
 
     private void Awake() {
         _shared = this;
         _arena = GOManager.Create(arenaType.ArenaPath()).GetComponent<Arena>();
         _camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraFollow>();
-        SetupScene();
+        GenerateVehicles();
+        GenerateStuff();
     }
 
 
-    private void SetupScene() {
+    private void GenerateVehicles() {
         _vehicles.Clear();
         for (int i = 0; i < vehiclesInfo.Length; i++) {
             Vehicle.Data data = vehiclesInfo[i];
@@ -37,6 +39,14 @@ public class SceneManager: MonoBehaviour {
             if (data.isPlayer) { _camera.Set(vehicle.transform); }
             _vehicles.Add(vehicle);
         }
+    }
+
+
+    private void GenerateStuff() {
+        _stuffs.Clear();
+
+        /// Генерация всякой фигни, которую можно подобрать на арене
+
     }
 }
 
