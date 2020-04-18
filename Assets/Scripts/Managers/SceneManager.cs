@@ -10,6 +10,8 @@ public class SceneManager: MonoBehaviour {
     private static SceneManager _shared;
     public static SceneManager Shared { get { return _shared; } }
 
+    private Transform _equipmentContainer;
+
     private Arena _arena;
     public Arena Arena  { get { return _arena; } }
 
@@ -17,7 +19,8 @@ public class SceneManager: MonoBehaviour {
 
     [SerializeField] Vehicle.Data[] vehiclesInfo;
     private List<Vehicle> _vehicles = new List<Vehicle>();
-    private List<Stuff> _stuffs = new List<Stuff>();
+    private List<Stuff> _stuff = new List<Stuff>();
+    private List<Equipment> _equipment = new List<Equipment>();
 
 
     private void Awake() {
@@ -26,9 +29,11 @@ public class SceneManager: MonoBehaviour {
         _camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraFollow>();
         GenerateVehicles();
         GenerateStuff();
+        GenerateEquipment();
     }
 
-
+    
+    /// Генерация машин на арене
     private void GenerateVehicles() {
         _vehicles.Clear();
         for (int i = 0; i < vehiclesInfo.Length; i++) {
@@ -42,11 +47,24 @@ public class SceneManager: MonoBehaviour {
     }
 
 
+    /// Генерация оружий на арене
+    private void GenerateEquipment() {
+        GameObject equipmentContainer = new GameObject("Equipments");
+        _equipmentContainer = equipmentContainer.transform;
+
+        _equipment.Clear();
+        for (int i = 0; i < arenaType.EquipmentCount(); i++) {
+            Arena.Location location = _arena.RandomLocation;
+            WeaponType wt = WeaponTypeExtension.RandomWeapon();
+            Equipment equipment = GOManager.Create(wt.EquipmentPath(), _equipmentContainer).GetComponent<Equipment>();
+            equipment.Setup(location, wt);
+            _equipment.Add(equipment);
+        }
+    }
+
+
+    /// Генерация всякой фигни, которую можно подобрать на арене
     private void GenerateStuff() {
-        _stuffs.Clear();
-
-        /// Генерация всякой фигни, которую можно подобрать на арене
-
+        _stuff.Clear();
     }
 }
-

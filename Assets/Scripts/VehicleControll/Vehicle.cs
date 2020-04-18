@@ -16,6 +16,7 @@ public class Vehicle: MonoBehaviour {
     [SerializeField] public BlumbType blumbType;
 
     private WheelVehicle _wheelController;
+    private WeaponController _weaponController;
 
 
     public void Setup(Data data, Arena.Location location) {
@@ -23,6 +24,7 @@ public class Vehicle: MonoBehaviour {
         blumbType = data.blumb;
         transform.position = location.point;
         transform.up = location.normal;
+        _weaponController = GetComponent<WeaponController>();
         SetupBlumb();
         SetupWheelController();
     }
@@ -39,6 +41,11 @@ public class Vehicle: MonoBehaviour {
         GOManager.Create("Blumbs/Blumb")
             .GetComponent<Blumb>()
             .Set(this, blumbType);
+    }
+
+
+    public bool SetWeapon(WeaponType weaponType) {
+        return _weaponController.SetWeapon(weaponType);
     }
 
 

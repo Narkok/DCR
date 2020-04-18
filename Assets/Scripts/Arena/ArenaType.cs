@@ -18,7 +18,7 @@ public static class ArenaTypeExtension {
         }
     }
 
-    public static int WeaponsCount(this ArenaType type) {
+    public static int EquipmentCount(this ArenaType type) {
         switch (type) {
             case ArenaType.Sphere: { return 30; }
             case ArenaType.Torus: { return 50; }

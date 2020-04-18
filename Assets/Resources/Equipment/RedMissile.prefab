@@ -60,8 +60,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6093738530747533240}
-  - component: {fileID: 6907737850993855192}
-  - component: {fileID: 114458230661777760}
+  - component: {fileID: 5936640820579191308}
+  - component: {fileID: 5486709648887312008}
   m_Layer: 0
   m_Name: RedMissile
   m_TagString: Untagged
@@ -85,8 +85,8 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &6907737850993855192
-SphereCollider:
+--- !u!136 &5936640820579191308
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -95,10 +95,11 @@ SphereCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.6
-  m_Center: {x: 0, y: 0.6, z: 0}
---- !u!114 &114458230661777760
+  m_Radius: 1
+  m_Height: 3
+  m_Direction: 1
+  m_Center: {x: 0, y: 1.5, z: 0}
+--- !u!114 &5486709648887312008
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -107,7 +108,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6093738530747533243}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d34c38d2d487b457c9d085691377ba21, type: 3}
+  m_Script: {fileID: 11500000, guid: a470e9a51042447f7aec4df60fbeac84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &8101094264399668621

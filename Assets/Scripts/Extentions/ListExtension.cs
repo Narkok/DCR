@@ -20,14 +20,20 @@ public static class ListExtention {
     }
 
 
-    public static Vector3 Random(this List<Vector3> list) {
-        if (!list.Any()) { return new Vector3(); }
-        return list[UnityEngine.Random.Range(0, list.Count)];
+    public static T RandomElement<T>(this List<T> list) {
+        if (!list.Any()) { return list.FirstOrDefault(); }
+        return list[Random.Range(0, list.Count)];
     }
 
 
-    public static Vector3 Random(this Vector3[] list) {
+    public static Vector3 RandomElement(this List<Vector3> list) {
         if (!list.Any()) { return new Vector3(); }
-        return list[UnityEngine.Random.Range(0, list.Length)];
+        return list[Random.Range(0, list.Count)];
+    }
+
+
+    public static Vector3 RandomElement(this Vector3[] list) {
+        if (!list.Any()) { return new Vector3(); }
+        return list[Random.Range(0, list.Length)];
     }
 }

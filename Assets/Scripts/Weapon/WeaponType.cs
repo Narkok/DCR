@@ -10,6 +10,21 @@ public enum WeaponType {
 
 
 public static class WeaponTypeExtension {
+
+    public static WeaponType RandomWeapon() {
+        return List.RandomElement();
+    }
+
+
+    public static List<WeaponType> List {
+        get {
+            return new List<WeaponType>() {
+                WeaponType.Cannon
+            };
+        }
+    }
+
+
     public static float CoolDownTime(this WeaponType type) {
         switch (type) {
             case WeaponType.MachineGun: { return 0.4f; }
@@ -37,6 +52,15 @@ public static class WeaponTypeExtension {
     }
 
 
+    public static string EquipmentPath(this WeaponType type) {
+        switch (type) {
+            case WeaponType.MachineGun: { return ""; }
+            case WeaponType.Cannon:     { return "Equipment/RedMissile"; }
+            default: return "";
+        }
+    }
+
+
     public static float LifeTime(this WeaponType type) {
         switch (type) {
             case WeaponType.MachineGun: { return 4f; }
@@ -59,6 +83,15 @@ public static class WeaponTypeExtension {
         switch (type) {
             case WeaponType.MachineGun: { return -1; }
             case WeaponType.Cannon:     { return 8; }
+            default: return 0;
+        }
+    }
+
+    
+    public static int AmmoMaxCount(this WeaponType type) {
+        switch (type) {
+            case WeaponType.MachineGun: { return -1; }
+            case WeaponType.Cannon:     { return 20; }
             default: return 0;
         }
     }

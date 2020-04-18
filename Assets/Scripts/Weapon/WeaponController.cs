@@ -6,46 +6,84 @@ using UnityEngine;
 
 public class WeaponController: MonoBehaviour {
 
-    private List<WeaponAttachPoint> attachPoints;
-    private List<WeaponAttachPoint> freeAttachPoints;
-    private Weapon machineGun;
+    private List<WeaponAttachPoint> _attachPoints;
+    private List<WeaponAttachPoint> _freeAttachPoints;
 
-    //private Weapon selectedWeapon;
-    //private List<Weapon> weapons;
-    
+    private AttachedWeapon _machineGun;
+    private AttachedWeapon _selectedWeapon;
+    private List<AttachedWeapon> _weapons = new List<AttachedWeapon>();
+
 
     private void Awake() {
-        attachPoints = transform.GetComponentsInChildren<WeaponAttachPoint>().ToList();
-        freeAttachPoints = attachPoints;
-        //weapons = new List<Weapon>();
-        //selectedWeapon = null;
+        _attachPoints = transform.GetComponentsInChildren<WeaponAttachPoint>().ToList();
+        _freeAttachPoints = _attachPoints;
+        _weapons.Clear();
+        _selectedWeapon = null;
         SetupMG();
     }
 
 
     void SetupMG() {
-        WeaponAttachPoint attachPoint = freeAttachPoints[Random.Range(0, freeAttachPoints.Count)];
-        freeAttachPoints.Remove(attachPoint);
-        GameObject weapon = GOManager.Create(WeaponType.Cannon.WeaponPath(), attachPoint.transform);
-        machineGun = weapon.GetComponent<Weapon>();
-        machineGun.SetType(WeaponType.Cannon);
+        WeaponAttachPoint attachPoint = _freeAttachPoints[Random.Range(0, _freeAttachPoints.Count)];
+        _freeAttachPoints.Remove(attachPoint);
+        Weapon weapon = GOManager.Create(WeaponType.MachineGun.WeaponPath(), attachPoint.transform).GetComponent<Weapon>();
+        _machineGun = new AttachedWeapon(weapon, attachPoint);
+        _machineGun.weapon.SetType(WeaponType.MachineGun);
     }
 
 
     void Update() {
         if (InputManager.isActive(InputManager.LClick)) {
-            machineGun.Shoot();
+            _machineGun.weapon.Shoot();
+        }
+
+        if (InputManager.isActive(InputManager.RClick)) {
+            if (_selectedWeapon != null) {
+                _selectedWeapon.weapon.Shoot();
+
+                if (_selectedWeapon.weapon.IsEmpty) {
+                    Debug.Log(_weapons.Count);
+                    _freeAttachPoints.Add(_selectedWeapon.attachPoint);
+                    _weapons.Remove(_selectedWeapon);
+                    Debug.Log(_weapons.Count);
+                    Debug.Log(_weapons.Any());
+                    Destroy(_selectedWeapon.weapon.gameObject);
+                    _selectedWeapon = _weapons.Any() ? _weapons.First() : null;
+                    Debug.Log(_selectedWeapon != null);
+                }
+            }
         }
     }
 
 
-    //void SetWeapon(WeaponType weaponType) {
-    //    if (!freeAttachPoints.Any()) return;
-    //    WeaponAttachPoint attachPoint = freeAttachPoints[Random.Range(0, freeAttachPoints.Count)];
-    //    freeAttachPoints.Remove(attachPoint);
-    //    GameObject weapon_GO = GOManager.Create(weaponType.WeaponPath(), attachPoint.transform);
-    //    Weapon weapon = weapon_GO.GetComponent<Weapon>();
-    //    weapon.SetType(weaponType);
-    //    if (selectedWeapon == null) { selectedWeapon = weapon; }
-    //}
+    public bool SetWeapon(WeaponType weaponType) {
+        AttachedWeapon attachedWeapon = Contains(weaponType);
+        if (attachedWeapon != null) return attachedWeapon.weapon.AmmoIncrease();
+
+        if (!_freeAttachPoints.Any()) return false;
+        WeaponAttachPoint attachPoint = _freeAttachPoints[Random.Range(0, _freeAttachPoints.Count)];
+        _freeAttachPoints.Remove(attachPoint);
+        Weapon weapon = GOManager.Create(weaponType.WeaponPath(), attachPoint.transform).GetComponent<Weapon>();
+        weapon.SetType(weaponType);
+        attachedWeapon = new AttachedWeapon(weapon, attachPoint);
+        _weapons.Add(attachedWeapon);
+        if (_selectedWeapon == null) { _selectedWeapon = attachedWeapon; }
+        return true;
+    }
+
+
+    private AttachedWeapon Contains(WeaponType weaponType) {
+        return _weapons.Find(item => item.weapon.Type == weaponType);
+    }
+
+
+    private class AttachedWeapon {
+        public Weapon weapon;
+        public WeaponAttachPoint attachPoint;
+
+        public AttachedWeapon(Weapon weapon, WeaponAttachPoint attachPoint) {
+            this.weapon = weapon;
+            this.attachPoint = attachPoint;
+        }
+    }
 }

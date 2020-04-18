@@ -5,31 +5,43 @@ using UnityEngine;
 
 public class Weapon: MonoBehaviour {
 
-    private bool isAvalaible = true;
-    public WeaponType type;
-    public int AmmoCount = 0;
+    private bool isAvalaible = false;
+
+    private WeaponType _type;
+    public WeaponType Type { get { return _type; } }
+
+    [SerializeField] private int _ammoCount = 0;
+    public bool IsEmpty { get { return _ammoCount == 0; } }
 
 
     public void SetType(WeaponType type) {
-        this.type = type;
-        AmmoCount = type.AmmoInitialCount();
+        _type = type;
+        _ammoCount = type.AmmoInitialCount();
+        StartCoroutine(CoolDown());
     }
 
 
     public void Shoot() {
         if (!isAvalaible) { return; }
         isAvalaible = false;
-        GameObject bullet = GOManager.Create(type.AmmoPath());
+        GameObject bullet = GOManager.Create(_type.AmmoPath());
         Transform firePoint = GetComponentInChildren<FirePoint>().transform;
         bullet.transform.position = firePoint.position;
         bullet.transform.rotation = firePoint.rotation;
-        AmmoCount--;
+        _ammoCount--;
         StartCoroutine(CoolDown());
     }
 
 
     private IEnumerator CoolDown() {
-        yield return new WaitForSeconds(type.CoolDownTime());
+        yield return new WaitForSeconds(_type.CoolDownTime());
         isAvalaible = true;
+    }
+
+
+    public bool AmmoIncrease() {
+        if (_ammoCount == _type.AmmoMaxCount()) { return false; }
+        _ammoCount = Mathf.Min(_type.AmmoMaxCount(), _ammoCount + _type.AmmoInitialCount());
+        return true;
     }
 }

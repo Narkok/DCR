@@ -19,10 +19,10 @@ public class Arena: MonoBehaviour {
 
 
     private Location GenerateLocation() {
-        Vector3 surfacePoint = transform.TransformPoint(_mesh.vertices.Random());
+        Vector3 surfacePoint = transform.TransformPoint(_mesh.vertices.RandomElement());
         Vector3 closestGPPoint = gravityProcessor.Closest(surfacePoint);
         Vector3 normal = (closestGPPoint - surfacePoint).normalized;
-        Vector3 point = surfacePoint + normal;
+        Vector3 point = surfacePoint;
         return new Location(point, normal);
     }
 
