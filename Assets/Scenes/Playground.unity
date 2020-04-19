@@ -124,6 +124,7 @@ GameObject:
   - component: {fileID: 1436250122}
   - component: {fileID: 1436250121}
   - component: {fileID: 1436250124}
+  - component: {fileID: 1436250125}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -208,6 +209,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   smoothTime: 12
+--- !u!114 &1436250125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1436250120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42cd8dcae69d178488f5efa28e7c7e78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shader: {fileID: 4800000, guid: 95703b29f49b899499233ea7308bb800, type: 3}
+  BlockCount: 1024
 --- !u!1 &1461094582
 GameObject:
   m_ObjectHideFlags: 0
@@ -241,7 +256,7 @@ MonoBehaviour:
   vehiclesInfo:
   - isPlayer: 1
     vehicle: 0
-    blumb: 2
+    blumb: 3
 --- !u!4 &1461094584
 Transform:
   m_ObjectHideFlags: 0

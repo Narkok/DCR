@@ -4,9 +4,17 @@ using UnityEngine;
 
 
 public class Blumb: MonoBehaviour {
+    
+    private bool _isEnabled = false;
+    private Vehicle _vehicle;
+    private BlumbType _type;
 
-    private Vehicle vehicle;
-    private BlumbType type;
+    private LineRenderer _lineRenderer;
+    private Transform _attachPoint;
+    private const int _lineSegmentsCount = 6;
+    private Vector3[] _linePositions = new Vector3[_lineSegmentsCount];
+    private HingeJoint _joint;
+    private Transform _blumb;
 
     [Range(1.5f, 4f)]
     [SerializeField] float lenght = 2.8f;
@@ -17,30 +25,58 @@ public class Blumb: MonoBehaviour {
 
 
     public void Set(Vehicle vehicle, BlumbType type) {
-        this.vehicle = vehicle;
-        this.type = type;
+        _vehicle = vehicle;
+        _type = type;
+        _lineRenderer = GetComponent<LineRenderer>();
+        _lineRenderer.positionCount = _lineSegmentsCount;
+        _attachPoint = _vehicle.GetComponentInChildren<BlumbAttachPoint>().transform;
+        _joint = GetComponent<HingeJoint>();
         Setup();
     }
 
 
     private void Clear() {
-        for (int i = 0; i < transform.childCount; i++) {
+        _isEnabled = false;
+        for (int i = 0; i < transform.childCount; i++)
             Destroy(transform.GetChild(i).gameObject);
-        }
     }
 
 
     private void Setup() {
         Clear();
-        if (type == BlumbType.None) return; 
-        HingeJoint joint = GetComponent<HingeJoint>();
-        Transform attachPoint = vehicle.transform.Find("BlumbAttachPoint").transform;
-        joint.connectedBody = vehicle.GetComponent<Rigidbody>();
-        joint.connectedAnchor = attachPoint.localPosition;
-        joint.axis = attachPoint.transform.right;
-        joint.anchor = -lenght * attachPoint.transform.up.normalized;
-        GameObject blumb = GOManager.Create(type.Path(), transform);
-        blumb.transform.localRotation = vehicle.transform.localRotation;
+        if (_type == BlumbType.None) return;
+        _joint.connectedBody = _vehicle.GetComponent<Rigidbody>();
+        _joint.connectedAnchor = _attachPoint.localPosition;
+        _joint.axis = _attachPoint.right;
+        _joint.anchor = -lenght * _attachPoint.up;
+        _blumb = GOManager.Create(_type.Path(), transform).transform;
+        _blumb.localRotation = _vehicle.transform.localRotation;
+        _isEnabled = true;
+    }
+
+
+    private void Update() {
+        UpdateLine();
+    }
+
+
+    private void UpdateLine() {
+        if (!_isEnabled) return;
+        for (int i = 0; i < _lineSegmentsCount; i++) {
+            float t = i / (float)_lineSegmentsCount;
+            Vector3 middlePoint = _attachPoint.position + _attachPoint.up * 0.3f;
+            _linePositions[i] = BezierPoint(t, _attachPoint.position, middlePoint, _blumb.position);
+        }
+        _lineRenderer.SetPositions(_linePositions);
+    }
+
+
+    private Vector3 BezierPoint(float t, Vector3 start, Vector3 middle, Vector3 end) {
+        float u = 1 - t;
+        float tt = t * t;
+        float uu = u * u;
+
+        return uu * start + 2 * u * t * middle + tt * end;
     }
 
 

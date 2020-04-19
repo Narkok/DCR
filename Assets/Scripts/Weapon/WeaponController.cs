@@ -33,23 +33,18 @@ public class WeaponController: MonoBehaviour {
 
 
     void Update() {
-        if (InputManager.isActive(InputManager.LClick)) {
+        if (InputManager.isActive(InputManager.LClick))
             _machineGun.weapon.Shoot();
-        }
 
         if (InputManager.isActive(InputManager.RClick)) {
             if (_selectedWeapon != null) {
                 _selectedWeapon.weapon.Shoot();
 
                 if (_selectedWeapon.weapon.IsEmpty) {
-                    Debug.Log(_weapons.Count);
                     _freeAttachPoints.Add(_selectedWeapon.attachPoint);
                     _weapons.Remove(_selectedWeapon);
-                    Debug.Log(_weapons.Count);
-                    Debug.Log(_weapons.Any());
                     Destroy(_selectedWeapon.weapon.gameObject);
                     _selectedWeapon = _weapons.Any() ? _weapons.First() : null;
-                    Debug.Log(_selectedWeapon != null);
                 }
             }
         }
@@ -59,8 +54,8 @@ public class WeaponController: MonoBehaviour {
     public bool SetWeapon(WeaponType weaponType) {
         AttachedWeapon attachedWeapon = Contains(weaponType);
         if (attachedWeapon != null) return attachedWeapon.weapon.AmmoIncrease();
-
         if (!_freeAttachPoints.Any()) return false;
+
         WeaponAttachPoint attachPoint = _freeAttachPoints[Random.Range(0, _freeAttachPoints.Count)];
         _freeAttachPoints.Remove(attachPoint);
         Weapon weapon = GOManager.Create(weaponType.WeaponPath(), attachPoint.transform).GetComponent<Weapon>();
