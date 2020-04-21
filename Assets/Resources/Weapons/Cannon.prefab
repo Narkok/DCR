@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 6494385594619042552}
   m_Layer: 0
   m_Name: Cannon
-  m_TagString: SimpleGun
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -123,8 +123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4967ea3d5a1624406a072e8bc05d2238, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
-  AmmoCount: 0
+  _ammoCount: 0
 --- !u!1 &1601544742656196040
 GameObject:
   m_ObjectHideFlags: 0
@@ -135,7 +134,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8622302840916690790}
   - component: {fileID: 7108507214556394666}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: FirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -168,6 +167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83534d72733cc43108b8cc65561f2263, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GroundDistance: 0
 --- !u!1 &2143771724063643600
 GameObject:
   m_ObjectHideFlags: 0

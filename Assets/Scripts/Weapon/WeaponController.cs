@@ -14,7 +14,7 @@ public class WeaponController: MonoBehaviour {
     private List<AttachedWeapon> _weapons = new List<AttachedWeapon>();
 
 
-    private void Awake() {
+    private void Start() {
         _attachPoints = transform.GetComponentsInChildren<WeaponAttachPoint>().ToList();
         _freeAttachPoints = _attachPoints;
         _weapons.Clear();
@@ -23,16 +23,7 @@ public class WeaponController: MonoBehaviour {
     }
 
 
-    void SetupMG() {
-        WeaponAttachPoint attachPoint = _freeAttachPoints[Random.Range(0, _freeAttachPoints.Count)];
-        _freeAttachPoints.Remove(attachPoint);
-        Weapon weapon = GOManager.Create(WeaponType.MachineGun.WeaponPath(), attachPoint.transform).GetComponent<Weapon>();
-        _machineGun = new AttachedWeapon(weapon, attachPoint);
-        _machineGun.weapon.SetType(WeaponType.MachineGun);
-    }
-
-
-    void Update() {
+    private void Update() {
         if (InputManager.isActive(InputManager.LClick))
             _machineGun.weapon.Shoot();
 
@@ -59,11 +50,35 @@ public class WeaponController: MonoBehaviour {
         WeaponAttachPoint attachPoint = _freeAttachPoints[Random.Range(0, _freeAttachPoints.Count)];
         _freeAttachPoints.Remove(attachPoint);
         Weapon weapon = GOManager.Create(weaponType.WeaponPath(), attachPoint.transform).GetComponent<Weapon>();
+        weapon.FirePointRotation = -attachPoint.transform.localRotation.eulerAngles.z;
+        FirePoint firePoint = weapon.GetComponentInChildren<FirePoint>();
+        weapon.GroundDistance = CalculateGroundDistance(firePoint.transform);
         weapon.SetType(weaponType);
         attachedWeapon = new AttachedWeapon(weapon, attachPoint);
         _weapons.Add(attachedWeapon);
         if (_selectedWeapon == null) { _selectedWeapon = attachedWeapon; }
         return true;
+    }
+
+
+    private void SetupMG() {
+        WeaponAttachPoint attachPoint = _freeAttachPoints[Random.Range(0, _freeAttachPoints.Count)];
+        _freeAttachPoints.Remove(attachPoint);
+        Weapon weapon = GOManager.Create(WeaponType.MachineGun.WeaponPath(), attachPoint.transform).GetComponent<Weapon>();
+        weapon.FirePointRotation = -attachPoint.transform.localRotation.eulerAngles.z;
+        FirePoint firePoint = weapon.GetComponentInChildren<FirePoint>();
+        weapon.GroundDistance = CalculateGroundDistance(firePoint.transform);
+        _machineGun = new AttachedWeapon(weapon, attachPoint);
+        _machineGun.weapon.SetType(WeaponType.MachineGun);
+    }
+
+
+    private float CalculateGroundDistance(Transform point) {
+        Ray ray = new Ray(point.position, -point.up);
+        RaycastHit hit;
+        LayerMask mask = LayerMask.GetMask(Arena.Name);
+        Physics.Raycast(ray, out hit, Mathf.Infinity, mask);
+        return hit.distance;
     }
 
 

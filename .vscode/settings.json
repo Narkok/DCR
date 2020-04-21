@@ -64,7 +64,7 @@
     },
     "files.autoSave": "afterDelay",
     "files.insertFinalNewline": true,
-    "workbench.colorTheme": "Atom One Dark",
+    "workbench.colorTheme": "Monokai",
     "workbench.preferredDarkColorTheme": "Monokai",
     "workbench.fontAliasing": "antialiased",
     "workbench.tree.indent": 20,

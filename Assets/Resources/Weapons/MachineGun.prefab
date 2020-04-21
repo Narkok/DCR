@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 241427832796555041}
   - component: {fileID: 4280736779369782550}
   - component: {fileID: 8376502866725887151}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103,7 +103,7 @@ GameObject:
   - component: {fileID: 6494385594619042552}
   m_Layer: 0
   m_Name: MachineGun
-  m_TagString: SimpleGun
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -137,7 +137,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4967ea3d5a1624406a072e8bc05d2238, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
+  _ammoCount: 0
 --- !u!1 &1601544742656196040
 GameObject:
   m_ObjectHideFlags: 0
@@ -148,7 +148,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8622302840916690790}
   - component: {fileID: 7108507214556394666}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: FirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -163,7 +163,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1601544742656196040}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.1479981, z: 0.375}
+  m_LocalPosition: {x: 0, y: 0.149, z: 0.395}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7736434220746506790}
@@ -181,6 +181,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83534d72733cc43108b8cc65561f2263, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GroundDistance: 0
 --- !u!1 &2967155142712671081
 GameObject:
   m_ObjectHideFlags: 0
@@ -193,7 +194,7 @@ GameObject:
   - component: {fileID: 5967555549400515899}
   - component: {fileID: 1164488366187111700}
   - component: {fileID: 1488835758729206868}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}

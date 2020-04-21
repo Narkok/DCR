@@ -7,6 +7,11 @@ TagManager:
   - GravityCenter
   - SimpleGun
   - FirePoint
+  - Arena
+  - Wheel
+  - Car
+  - Ammo
+  - Undefined
   layers:
   - Default
   - TransparentFX
@@ -18,8 +23,8 @@ TagManager:
   - 
   - Car
   - Arena
-  - 
-  - 
+  - WheelCollider
+  - CrawlingBody
   - 
   - 
   - 

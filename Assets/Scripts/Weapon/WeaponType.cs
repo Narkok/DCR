@@ -61,6 +61,15 @@ public static class WeaponTypeExtension {
     }
 
 
+    public static bool IsCrawling(this WeaponType type) {
+        switch (type) {
+            case WeaponType.MachineGun: { return true; }
+            case WeaponType.Cannon:     { return true; }
+            default: return true;
+        }
+    }
+
+
     public static float LifeTime(this WeaponType type) {
         switch (type) {
             case WeaponType.MachineGun: { return 4f; }
@@ -72,8 +81,8 @@ public static class WeaponTypeExtension {
 
     public static float Speed(this WeaponType type) {
         switch (type) {
-            case WeaponType.MachineGun: { return 0.05f; }
-            case WeaponType.Cannon:     { return 0.04f; }
+            case WeaponType.MachineGun: { return 55f; }
+            case WeaponType.Cannon:     { return 50f; }
             default: return 0f;
         }
     }
