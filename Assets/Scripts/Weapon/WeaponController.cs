@@ -76,8 +76,7 @@ public class WeaponController: MonoBehaviour {
     private float CalculateGroundDistance(Transform point) {
         Ray ray = new Ray(point.position, -point.up);
         RaycastHit hit;
-        LayerMask mask = LayerMask.GetMask(Arena.Name);
-        Physics.Raycast(ray, out hit, Mathf.Infinity, mask);
+        Physics.Raycast(ray, out hit, Mathf.Infinity, Arena.Mask);
         return hit.distance;
     }
 

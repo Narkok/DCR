@@ -16,6 +16,7 @@ public class CameraFollow: MonoBehaviour {
 
     public void Set(Transform followVehicle) {
         _transform = transform;
+        _transform.position = followVehicle.position + followVehicle.up * 50;
         _lookAtTarget = followVehicle.Find("CameraLookAtTarget");
         _positionTarget = followVehicle.Find("CameraPositionTarget");
     }

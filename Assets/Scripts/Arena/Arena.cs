@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Arena: MonoBehaviour {
     public static readonly string Name = "Arena";
+    public static LayerMask Mask;
 
     [SerializeField] private GravityProcessor gravityProcessor;
     public GravityProcessor GravityProcessor { get { return gravityProcessor; } }
@@ -16,6 +17,7 @@ public class Arena: MonoBehaviour {
 
     private void Awake() {
         _mesh = GetComponent<MeshFilter>().sharedMesh;
+        Arena.Mask = LayerMask.GetMask(Name);
     }
 
 
