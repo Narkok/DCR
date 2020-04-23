@@ -369,7 +369,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d68bca03caa446e69424cbadacec5db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  arenaType: 0
+  arenaType: 1
   EquipmentContainer: {fileID: 0}
   VehicleContainer: {fileID: 0}
   BlumbContainer: {fileID: 0}
@@ -383,7 +383,7 @@ MonoBehaviour:
     blumb: 0
   - isPlayer: 1
     vehicle: 0
-    blumb: 3
+    blumb: 4
 --- !u!4 &1461094584
 Transform:
   m_ObjectHideFlags: 0

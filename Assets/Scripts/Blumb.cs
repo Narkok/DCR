@@ -63,7 +63,7 @@ public class Blumb: MonoBehaviour {
     private void UpdateLine() {
         if (!_isEnabled) return;
         for (int i = 0; i < _lineSegmentsCount; i++) {
-            float t = i / (float)_lineSegmentsCount;
+            float t = i / (float)(_lineSegmentsCount - 1);
             Vector3 middlePoint = _attachPoint.position + _attachPoint.up * 0.3f;
             _linePositions[i] = BezierPoint(t, _attachPoint.position, middlePoint, _blumb.position);
         }
@@ -90,7 +90,8 @@ public enum BlumbType {
     None,
     Skull,
     Luci,
-    Creeper
+    Creeper,
+    Cupcake
 }
 
 
@@ -100,6 +101,7 @@ public static class BlumbTypeExtention {
             case BlumbType.Skull: { return "Blumbs/Skull"; }
             case BlumbType.Luci: { return "Blumbs/Luci"; }
             case BlumbType.Creeper: { return "Blumbs/Creeper"; }
+            case BlumbType.Cupcake: { return "Blumbs/Cupcake"; }
             default: return "";
         }
     }
