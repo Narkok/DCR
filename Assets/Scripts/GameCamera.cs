@@ -5,16 +5,16 @@ using UnityEngine;
 
 public class GameCamera: MonoBehaviour {
 
-    [Range(1000, 4000)] public float mouseSensitivity = 2000;
-    [SerializeField] public bool keepVertical = false;
-    [Range(5, 20)] public int smoothTime = 12;
-    [Range(0, 0.1f)] public float smoothDelta = 0.02f;
-    [Range(0, 4)] public float forwardOffset = 2;
-    [Range(0, 3)] public float positionResetDelay = 1.5f;
-    [Range(0.1f, 1f)] public float turnRotateSmooth = 0.2f;
+    /// Настройки
+    // private bool keepVertical = false;
+    private float mouseSensitivity = 2000;
+    private int smoothTime = 15;
+    private float smoothDelta = 0.02f;
+    private float forwardOffset = 3;
+    private float positionResetDelay = 1.7f;
+    private float turnRotateSmooth = 0.15f;
 
     private float currentSmooth = 0f;
-
     private Coroutine positionResetCoroutine;
     private bool positionResetInProgress = false;
 
@@ -22,7 +22,6 @@ public class GameCamera: MonoBehaviour {
     private Transform _positionTarget;
     private Transform _lookAtTarget;
     private Transform _cameraTarget;
-
     private Transform _vehicleTransform;
     private WheelVehicle _vehicle;
 

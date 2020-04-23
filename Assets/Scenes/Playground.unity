@@ -277,13 +277,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b953a88278cd1424497f5959fe97adca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mouseSensitivity: 2000
-  keepVertical: 0
-  smoothTime: 15
-  smoothDelta: 0.02
-  forwardOffset: 3
-  positionResetDelay: 1.5
-  turnRotateSmooth: 0.15
 --- !u!114 &1436250125
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -297,7 +290,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shader: {fileID: 4800000, guid: 95703b29f49b899499233ea7308bb800, type: 3}
-  BlockCount: 1024
+  BlockCount: 712
 --- !u!1 &1454912245
 GameObject:
   m_ObjectHideFlags: 0
