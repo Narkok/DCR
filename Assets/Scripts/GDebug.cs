@@ -43,12 +43,30 @@ public class GDebug: MonoBehaviour {
     }
 
 
+    public static void ShowDirection(Vector3 start, Vector3 dir) {
+        directions.Clear();
+        directions.Add(new Direction(start, dir));
+    }
+
+
     public static void AddLine(Vector3 start, Vector3 end) {
         lines.Add(new Line(start, end));
     }
 
 
+    public static void ShowLine(Vector3 start, Vector3 end) {
+        lines.Clear();
+        lines.Add(new Line(start, end));
+    }
+
+
     public static void AddPoint(Vector3 point) {
+        points.Add(point);
+    }
+
+
+    public static void ShowPoint(Vector3 point) {
+        points.Clear();
         points.Add(point);
     }
 

@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Assets.Pixelation.Example.Scripts
 {
-    [RequireComponent(typeof (Camera))]
+    [RequireComponent(typeof (UnityEngine.Camera))]
     [AddComponentMenu("")]
     public class ImageEffectBase : MonoBehaviour
     {

@@ -50,6 +50,9 @@ public class WheelVehicle : MonoBehaviour {
         *  The higher the torque the faster it accelerate
         *  the longer the curve the faster it gets
         */
+    [SerializeField] public float maxSpeed = 150;
+    [SerializeField] public float maxBoostSpeed = 180;
+
     [SerializeField] AnimationCurve motorTorque = new AnimationCurve(new Keyframe(0, 200), new Keyframe(50, 300), new Keyframe(200, 0));
 
     // Differential gearing ratio
@@ -205,9 +208,9 @@ public class WheelVehicle : MonoBehaviour {
         if (isPlayer) {
             handbrake = InputManager.isActive(InputManager.Break);
             // Accelerate & brake
-            throttle = InputManager.Input(InputManager.Throttle) - InputManager.Input(InputManager.Break);
+            throttle = (Mathf.Abs(speed) < maxSpeed) ? (InputManager.Input(InputManager.Throttle) - InputManager.Input(InputManager.Break)) : 0;
             // Boost
-            boosting = InputManager.isActive(InputManager.Boost);
+            boosting = (Mathf.Abs(speed) < maxBoostSpeed) ? InputManager.isActive(InputManager.Boost) : false;
             // Turn
             steering = turnInputCurve.Evaluate(InputManager.Input(InputManager.Turn)) * steerAngle;
             // Dirft

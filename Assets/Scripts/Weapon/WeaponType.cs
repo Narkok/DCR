@@ -81,8 +81,8 @@ public static class WeaponTypeExtension {
 
     public static float Speed(this WeaponType type) {
         switch (type) {
-            case WeaponType.MachineGun: { return 55f; }
-            case WeaponType.Cannon:     { return 50f; }
+            case WeaponType.MachineGun: { return 70f; }
+            case WeaponType.Cannon:     { return 60f; }
             default: return 0f;
         }
     }

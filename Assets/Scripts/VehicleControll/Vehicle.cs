@@ -38,7 +38,7 @@ public class Vehicle: MonoBehaviour {
 
     private void SetupBlumb() {
         if (blumbType == BlumbType.None) return;
-        GOManager.Create("Blumbs/Blumb")
+        GOManager.Create("Blumbs/Blumb", SceneManager.Shared.BlumbContainer)
             .GetComponent<Blumb>()
             .Set(this, blumbType);
     }

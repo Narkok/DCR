@@ -31,7 +31,7 @@ public class Weapon: MonoBehaviour {
     public void Shoot() {
         if (!isAvalaible) { return; }
         isAvalaible = false;
-        GameObject bullet = GOManager.Create(_type.AmmoPath());
+        GameObject bullet = GOManager.Create(_type.AmmoPath(), SceneManager.Shared.AmmoContainer);
         FirePoint firePoint = GetComponentInChildren<FirePoint>();
         if (_type.IsCrawling()) {
             bullet.GetComponent<CrawlingBody>().Setup(GroundDistance, firePoint.transform.position, firePoint.transform.rotation, _type.Speed());

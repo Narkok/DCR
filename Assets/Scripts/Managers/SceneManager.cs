@@ -10,12 +10,15 @@ public class SceneManager: MonoBehaviour {
     private static SceneManager _shared;
     public static SceneManager Shared { get { return _shared; } }
 
-    private Transform _equipmentContainer;
-
     private Arena _arena;
     public Arena Arena  { get { return _arena; } }
 
-    private CameraFollow _camera;
+    [HideInInspector] public Transform EquipmentContainer;
+    [HideInInspector] public Transform VehicleContainer;
+    [HideInInspector] public Transform BlumbContainer;
+    [HideInInspector] public Transform AmmoContainer;
+
+    private GameCamera _camera;
 
     [SerializeField] Vehicle.Data[] vehiclesInfo;
     private List<Vehicle> _vehicles = new List<Vehicle>();
@@ -26,10 +29,16 @@ public class SceneManager: MonoBehaviour {
     private void Awake() {
         _shared = this;
         _arena = GOManager.Create(arenaType.ArenaPath()).GetComponent<Arena>();
-        _camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraFollow>();
+        _camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<GameCamera>();
+
+        EquipmentContainer = new GameObject("Equipments").transform;
+        VehicleContainer = new GameObject("Vehicles").transform;
+        BlumbContainer = new GameObject("Blumbs").transform;
+        AmmoContainer = new GameObject("Ammo").transform;
+
+        GenerateEquipment();
         GenerateVehicles();
         GenerateStuff();
-        GenerateEquipment();
     }
 
     
@@ -39,7 +48,7 @@ public class SceneManager: MonoBehaviour {
         for (int i = 0; i < vehiclesInfo.Length; i++) {
             Vehicle.Data data = vehiclesInfo[i];
             Arena.Location location = _arena.RandomLocation;
-            Vehicle vehicle = GOManager.Create(data.vehicle.Path()).GetComponent<Vehicle>();
+            Vehicle vehicle = GOManager.Create(data.vehicle.Path(), VehicleContainer).GetComponent<Vehicle>();
             vehicle.Setup(data, location);
             if (data.isPlayer) { _camera.Set(vehicle.transform); }
             _vehicles.Add(vehicle);
@@ -49,14 +58,11 @@ public class SceneManager: MonoBehaviour {
 
     /// Генерация оружий на арене
     private void GenerateEquipment() {
-        GameObject equipmentContainer = new GameObject("Equipments");
-        _equipmentContainer = equipmentContainer.transform;
-
         _equipment.Clear();
         for (int i = 0; i < arenaType.EquipmentCount(); i++) {
             Arena.Location location = _arena.RandomLocation;
             WeaponType wt = WeaponTypeExtension.RandomWeapon();
-            Equipment equipment = GOManager.Create(wt.EquipmentPath(), _equipmentContainer).GetComponent<Equipment>();
+            Equipment equipment = GOManager.Create(wt.EquipmentPath(), EquipmentContainer).GetComponent<Equipment>();
             equipment.Setup(location, wt);
             _equipment.Add(equipment);
         }
