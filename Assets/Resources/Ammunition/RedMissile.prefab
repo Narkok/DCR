@@ -60,7 +60,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 30
-  groundDistance: 0
+  groundDistance: 1.2
 --- !u!1 &3060996105200394647
 GameObject:
   m_ObjectHideFlags: 0

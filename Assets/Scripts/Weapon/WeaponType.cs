@@ -9,6 +9,13 @@ public enum WeaponType {
 }
 
 
+public enum AmmoType {
+    Crawling,
+    Following,
+    Straight
+}
+
+
 public static class WeaponTypeExtension {
 
     public static WeaponType RandomWeapon() {
@@ -48,6 +55,15 @@ public static class WeaponTypeExtension {
             case WeaponType.MachineGun: { return "Ammunition/MGBullet"; }
             case WeaponType.Cannon:     { return "Ammunition/RedMissile"; }
             default: return "";
+        }
+    }
+
+
+    public static AmmoType AmmoType(this WeaponType type) {
+        switch (type) {
+            case WeaponType.MachineGun: { return global::AmmoType.Crawling; }
+            case WeaponType.Cannon:     { return global::AmmoType.Crawling; }
+            default: return global::AmmoType.Crawling;
         }
     }
 

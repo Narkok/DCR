@@ -4,8 +4,8 @@ using System.Collections.Generic;
 
 public class CrawlingBody : MonoBehaviour {
 
-    [SerializeField] public float speed = 30f;
-    [SerializeField] public float groundDistance = 0;
+    private float speed = 30f;
+    private float groundDistance = 1.1f;
 
     private Vector3 _normal;
     private Transform _transform;
@@ -17,12 +17,11 @@ public class CrawlingBody : MonoBehaviour {
     }
 
 
-    public void Setup(float distance, Vector3 position, Quaternion rotation, float speed) {
+    public void Setup(Vector3 position, Quaternion rotation, float speed) {
         _transform.position = position;
         _transform.rotation = rotation;
         _normal = transform.up;
         this.speed = speed;
-        this.groundDistance = distance;
     }
 
 

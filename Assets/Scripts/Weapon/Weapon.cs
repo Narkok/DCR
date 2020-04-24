@@ -10,8 +10,6 @@ public class Weapon: MonoBehaviour {
     private WeaponType _type;
     public WeaponType Type { get { return _type; } }
 
-    [SerializeField] public float GroundDistance = 0;
-
     [SerializeField] private int _ammoCount = 0;
     public bool IsEmpty { get { return _ammoCount == 0; } }
 
@@ -34,7 +32,7 @@ public class Weapon: MonoBehaviour {
         GameObject bullet = GOManager.Create(_type.AmmoPath(), SceneManager.Shared.AmmoContainer);
         FirePoint firePoint = GetComponentInChildren<FirePoint>();
         if (_type.IsCrawling()) {
-            bullet.GetComponent<CrawlingBody>().Setup(GroundDistance, firePoint.transform.position, firePoint.transform.rotation, _type.Speed());
+            bullet.GetComponent<CrawlingBody>().Setup(firePoint.transform.position, firePoint.transform.rotation, _type.Speed());
         }
         _ammoCount--;
         StartCoroutine(CoolDown());

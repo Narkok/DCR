@@ -99,7 +99,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1520392613424093103}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.376, y: 0.854, z: -0.396}
+  m_LocalPosition: {x: -0.376, y: 1.205, z: -0.396}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7430825503620418545}
@@ -527,7 +527,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3870717449008139265}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.499, y: 0.536, z: 1.256}
+  m_LocalPosition: {x: 0.499, y: 0.8870001, z: 1.256}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7430825503620418545}
@@ -570,7 +570,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5308358419149120054}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.376, y: 0.854, z: -0.396}
+  m_LocalPosition: {x: 0.376, y: 1.205, z: -0.396}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7430825503620418545}
@@ -10706,6 +10706,8 @@ MonoBehaviour:
   turnWheel:
   - {fileID: 6704551076395821794}
   - {fileID: 6704171328374650530}
+  maxSpeed: 150
+  maxBoostSpeed: 180
   motorTorque:
     serializedVersion: 2
     m_Curve:
@@ -20322,7 +20324,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7951372095412157709}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.35100007, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 9026029420514928684}

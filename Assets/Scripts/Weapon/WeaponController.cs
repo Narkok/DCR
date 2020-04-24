@@ -51,8 +51,6 @@ public class WeaponController: MonoBehaviour {
         _freeAttachPoints.Remove(attachPoint);
         Weapon weapon = GOManager.Create(weaponType.WeaponPath(), attachPoint.transform).GetComponent<Weapon>();
         weapon.FirePointRotation = -attachPoint.transform.localRotation.eulerAngles.z;
-        FirePoint firePoint = weapon.GetComponentInChildren<FirePoint>();
-        weapon.GroundDistance = CalculateGroundDistance(firePoint.transform);
         weapon.SetType(weaponType);
         attachedWeapon = new AttachedWeapon(weapon, attachPoint);
         _weapons.Add(attachedWeapon);
@@ -66,8 +64,6 @@ public class WeaponController: MonoBehaviour {
         _freeAttachPoints.Remove(attachPoint);
         Weapon weapon = GOManager.Create(WeaponType.MachineGun.WeaponPath(), attachPoint.transform).GetComponent<Weapon>();
         weapon.FirePointRotation = -attachPoint.transform.localRotation.eulerAngles.z;
-        FirePoint firePoint = weapon.GetComponentInChildren<FirePoint>();
-        weapon.GroundDistance = CalculateGroundDistance(firePoint.transform);
         _machineGun = new AttachedWeapon(weapon, attachPoint);
         _machineGun.weapon.SetType(WeaponType.MachineGun);
     }
