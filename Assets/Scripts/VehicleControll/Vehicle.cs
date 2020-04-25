@@ -61,7 +61,8 @@ public class Vehicle: MonoBehaviour {
 
 public enum VehicleType {
     Delorian,
-    Shelby
+    Shelby,
+    Monster
 }
 
 
@@ -69,7 +70,8 @@ public static class VehicleTypeExtention {
     public static string Path(this VehicleType type) {
         switch (type) {
             case VehicleType.Delorian: { return "Vehicles/Delorian"; }
-            case VehicleType.Shelby: { return "Vehicles/Shelby"; }
+            case VehicleType.Shelby:   { return "Vehicles/Shelby"; }
+            case VehicleType.Monster:  { return "Vehicles/Monster"; }
             default: return "";
         }
     }

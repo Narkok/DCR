@@ -180,6 +180,7 @@ public class WheelVehicle : MonoBehaviour {
         foreach (WheelCollider wheel in wheels)
         {
             wheel.motorTorque = 0.0001f;
+            wheel.ConfigureVehicleSubsteps(5, 12, 16);
         }
     }
 
