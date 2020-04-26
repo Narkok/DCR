@@ -10,7 +10,12 @@ public class Equipment: MonoBehaviour {
 
     private void OnTriggerEnter(Collider other) {
         Vehicle vehicle = other.GetComponent<Vehicle>();
-        if (vehicle == null) { return; }
+        if (vehicle == null) { 
+            vehicle = other.transform.parent.GetComponent<Vehicle>();
+            if (vehicle == null) {
+                return; 
+            }
+        }
         if (!vehicle.SetWeapon(_type)) { return; }
         Destroy(gameObject);
     }

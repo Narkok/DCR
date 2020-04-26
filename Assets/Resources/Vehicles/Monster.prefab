@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 220502855007593263}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.47, y: 2.404, z: -0.453}
+  m_LocalPosition: {x: -0.489, y: 2.371, z: -0.476}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6850680960298647276}
@@ -1200,6 +1200,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8257300522918067940}
+  - component: {fileID: 1642058445803072875}
   m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
@@ -1226,6 +1227,20 @@ Transform:
   m_Father: {fileID: 6850680960298647276}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!64 &1642058445803072875
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6573541348069612909}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300014, guid: 9f1b719e81a08403a91a83f233205754, type: 3}
 --- !u!1 &6845525764726738934
 GameObject:
   m_ObjectHideFlags: 0
@@ -1252,7 +1267,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6845525764726738934}
   m_LocalRotation: {x: -0, y: 0.0000029504295, z: -0, w: 1}
-  m_LocalPosition: {x: 0.84, y: 0.765, z: 0.965}
+  m_LocalPosition: {x: 0.84, y: 0.765, z: 0.90000015}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3581290791387349504}
@@ -1417,7 +1432,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6846898588652010344}
   m_LocalRotation: {x: -0, y: 0.0000029504295, z: -0, w: 1}
-  m_LocalPosition: {x: 1.11, y: 0.765, z: -0.975}
+  m_LocalPosition: {x: 1.11, y: 0.765, z: -1.0399998}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6896582586074920983}
@@ -1495,7 +1510,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6847065646085222638}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.11, y: 0.765, z: -0.97500014}
+  m_LocalPosition: {x: -1.11, y: 0.765, z: -1.04}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6153434976106459257}
@@ -11009,7 +11024,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6847320585845669164}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.84, y: 0.765, z: 0.965}
+  m_LocalPosition: {x: -0.84, y: 0.765, z: 0.90000015}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5378924783226269184}
@@ -11077,7 +11092,6 @@ GameObject:
   - component: {fileID: 6815402531679764862}
   - component: {fileID: 6784542450314389566}
   - component: {fileID: 6815139998502224264}
-  - component: {fileID: 8847398514455835910}
   m_Layer: 8
   m_Name: Monster
   m_TagString: Car
@@ -11256,7 +11270,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   diffGearing: 10
-  brakeForce: 6000
+  brakeForce: 3000
   steerAngle: 12
   steerSpeed: 0.12
   jumpVel: 1.1
@@ -11395,19 +11409,6 @@ MonoBehaviour:
   flatoutSpeed: 100
   minPitch: 1
   pitchSpeed: 0.05
---- !u!65 &8847398514455835910
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6847543321975528878}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.61, y: 1.0352962, z: 3.44}
-  m_Center: {x: 0, y: 1.8873519, z: 0}
 --- !u!1 &6847655931608833796
 GameObject:
   m_ObjectHideFlags: 0

@@ -404,7 +404,7 @@ MonoBehaviour:
     blumb: 3
   - isPlayer: 1
     vehicle: 2
-    blumb: 4
+    blumb: 1
 --- !u!4 &1461094584
 Transform:
   m_ObjectHideFlags: 0
