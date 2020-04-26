@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6518710449448823150}
   - component: {fileID: 3451245049696303095}
   - component: {fileID: 2646614269881778276}
+  - component: {fileID: 848113584653527265}
   m_Layer: 11
   m_Name: MGBullet
   m_TagString: Ammo
@@ -59,8 +60,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c7034c1198fb4bdfafc1aa9b015bd06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 30
-  groundDistance: 1.1
+--- !u!135 &848113584653527265
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 667507316370455446}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.03
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6222066535999305930
 GameObject:
   m_ObjectHideFlags: 0
@@ -72,7 +84,6 @@ GameObject:
   - component: {fileID: 5700549501658313372}
   - component: {fileID: 7347395287201038750}
   - component: {fileID: 1529443579468329067}
-  - component: {fileID: 774484066992673160}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -139,19 +150,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!135 &774484066992673160
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6222066535999305930}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6771190144928876266
 GameObject:
   m_ObjectHideFlags: 0

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6518710449448823150}
   - component: {fileID: 3451245049696303095}
   - component: {fileID: 114608965833728556}
+  - component: {fileID: 8180142801265792473}
   m_Layer: 11
   m_Name: RedMissile
   m_TagString: Ammo
@@ -46,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7328f6536bb79402a91b112acc5306f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponType: 0
+  weaponType: 1
 --- !u!114 &114608965833728556
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -59,8 +60,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c7034c1198fb4bdfafc1aa9b015bd06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 30
-  groundDistance: 1.2
+--- !u!135 &8180142801265792473
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 667507316370455446}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.08
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3060996105200394647
 GameObject:
   m_ObjectHideFlags: 0
@@ -221,19 +233,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 36f6003d4b88b47ba89e995068b43ff8, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.7071068
+      value: 0.6830129
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 36f6003d4b88b47ba89e995068b43ff8, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0.18301204
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 36f6003d4b88b47ba89e995068b43ff8, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0.18301201
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 36f6003d4b88b47ba89e995068b43ff8, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7071068
+      value: 0.6830129
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 36f6003d4b88b47ba89e995068b43ff8, type: 3}
       propertyPath: m_RootOrder
@@ -241,15 +253,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 36f6003d4b88b47ba89e995068b43ff8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: 60.000004
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 36f6003d4b88b47ba89e995068b43ff8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 90.00001
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 36f6003d4b88b47ba89e995068b43ff8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
+      value: 90.00001
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 36f6003d4b88b47ba89e995068b43ff8, type: 3}
       propertyPath: m_LocalScale.x

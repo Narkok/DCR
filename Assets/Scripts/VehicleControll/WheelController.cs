@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class WheelVehicle : MonoBehaviour {
+public class WheelController : MonoBehaviour {
         
     [Header("Inputs")]
     // If isPlayer is false inputs are ignored
@@ -50,8 +50,8 @@ public class WheelVehicle : MonoBehaviour {
         *  The higher the torque the faster it accelerate
         *  the longer the curve the faster it gets
         */
-    [SerializeField] public float maxSpeed = 150;
-    [SerializeField] public float maxBoostSpeed = 180;
+    public float maxSpeed = 100;
+    private float boostSpeedIncrease = 30;
 
     [SerializeField] AnimationCurve motorTorque = new AnimationCurve(new Keyframe(0, 200), new Keyframe(50, 300), new Keyframe(200, 0));
 
@@ -75,9 +75,9 @@ public class WheelVehicle : MonoBehaviour {
     public float SteerSpeed { get { return steerSpeed; } set { steerSpeed = Mathf.Clamp(value, 0.001f, 1.0f); } }
 
     // How hight do you want to jump?
-    [Range(1f, 1.5f)]
+    [Range(1f, 5f)]
     [SerializeField] float jumpVel = 1.3f;
-    public float JumpVel { get { return jumpVel; } set { jumpVel = Mathf.Clamp(value, 1.0f, 1.5f); } }
+    public float JumpVel { get { return jumpVel; } set { jumpVel = Mathf.Clamp(value, 1.0f, 5f); } }
 
     // How hard do you want to drift?
     [Range(0.0f, 2f)]
@@ -211,7 +211,7 @@ public class WheelVehicle : MonoBehaviour {
             // Accelerate & brake
             throttle = (Mathf.Abs(speed) < maxSpeed) ? (InputManager.Input(InputManager.Throttle) - InputManager.Input(InputManager.Break)) : 0;
             // Boost
-            boosting = (Mathf.Abs(speed) < maxBoostSpeed) ? InputManager.isActive(InputManager.Boost) : false;
+            boosting = InputManager.isActive(InputManager.Boost);
             // Turn
             steering = turnInputCurve.Evaluate(InputManager.Input(InputManager.Turn)) * steerAngle;
             // Dirft
@@ -266,7 +266,9 @@ public class WheelVehicle : MonoBehaviour {
 
         // Boost
         if (boosting && allowBoost && boost > 0.1f) {
-            _rb.AddForce(transform.forward * boostForce);
+            
+            if (Mathf.Abs(speed) < maxSpeed + boostSpeedIncrease)
+                _rb.AddForce(transform.forward * boostForce);
 
             boost -= Time.fixedDeltaTime;
             if (boost < 0f) { boost = 0f; }

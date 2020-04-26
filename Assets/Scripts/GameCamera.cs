@@ -23,7 +23,7 @@ public class GameCamera: MonoBehaviour {
     private Transform _lookAtTarget;
     private Transform _cameraTarget;
     private Transform _vehicleTransform;
-    private WheelVehicle _vehicle;
+    private WheelController _vehicle;
 
     private Vector3 initialLookAtTargetPosition;
     private float localZRotation = 0;
@@ -32,7 +32,7 @@ public class GameCamera: MonoBehaviour {
     public void Set(Transform followVehicle) {
         _transform = transform;
         _vehicleTransform = followVehicle;
-        _vehicle = _vehicleTransform.GetComponent<WheelVehicle>();
+        _vehicle = _vehicleTransform.GetComponent<WheelController>();
         _transform.position = followVehicle.position + followVehicle.up * 50;
         _lookAtTarget = followVehicle.GetComponentInChildren<CameraLookAtTarget>().transform;
         _cameraTarget = _lookAtTarget.parent;

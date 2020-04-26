@@ -13,12 +13,15 @@ public class WeaponController: MonoBehaviour {
     private AttachedWeapon _selectedWeapon;
     private List<AttachedWeapon> _weapons = new List<AttachedWeapon>();
 
+    private int _instanceID;
+
 
     private void Start() {
         _attachPoints = transform.GetComponentsInChildren<WeaponAttachPoint>().ToList();
         _freeAttachPoints = _attachPoints;
         _weapons.Clear();
         _selectedWeapon = null;
+        _instanceID = gameObject.GetInstanceID();
         SetupMG();
     }
 
@@ -51,7 +54,7 @@ public class WeaponController: MonoBehaviour {
         _freeAttachPoints.Remove(attachPoint);
         Weapon weapon = GOManager.Create(weaponType.WeaponPath(), attachPoint.transform).GetComponent<Weapon>();
         weapon.FirePointRotation = -attachPoint.transform.localRotation.eulerAngles.z;
-        weapon.SetType(weaponType);
+        weapon.Setup(weaponType, _instanceID);
         attachedWeapon = new AttachedWeapon(weapon, attachPoint);
         _weapons.Add(attachedWeapon);
         if (_selectedWeapon == null) { _selectedWeapon = attachedWeapon; }
@@ -65,7 +68,7 @@ public class WeaponController: MonoBehaviour {
         Weapon weapon = GOManager.Create(WeaponType.MachineGun.WeaponPath(), attachPoint.transform).GetComponent<Weapon>();
         weapon.FirePointRotation = -attachPoint.transform.localRotation.eulerAngles.z;
         _machineGun = new AttachedWeapon(weapon, attachPoint);
-        _machineGun.weapon.SetType(WeaponType.MachineGun);
+        _machineGun.weapon.Setup(WeaponType.MachineGun, _instanceID);
     }
 
 

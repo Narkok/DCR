@@ -120,4 +120,12 @@ public static class WeaponTypeExtension {
             default: return 0;
         }
     }
+
+    public static int Damage(this WeaponType type) {
+        switch (type) {
+            case WeaponType.MachineGun: { return 2; }
+            case WeaponType.Cannon:     { return 10; }
+            default: return 0;
+        }
+    }
 }

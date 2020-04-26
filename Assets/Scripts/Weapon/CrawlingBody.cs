@@ -4,8 +4,8 @@ using System.Collections.Generic;
 
 public class CrawlingBody : MonoBehaviour {
 
-    private float speed = 30f;
-    private float groundDistance = 1.1f;
+    private float _speed = 30f;
+    private float _groundDistance = 1.1f;
 
     private Vector3 _normal;
     private Transform _transform;
@@ -21,7 +21,7 @@ public class CrawlingBody : MonoBehaviour {
         _transform.position = position;
         _transform.rotation = rotation;
         _normal = transform.up;
-        this.speed = speed;
+        _speed = speed;
     }
 
 
@@ -31,11 +31,11 @@ public class CrawlingBody : MonoBehaviour {
         Vector3 surfaceNormal = Physics.Raycast(ray, out hit, Mathf.Infinity, Arena.Mask) ? hit.normal : Vector3.up;
         _normal = Vector3.Lerp(_normal, surfaceNormal, 10 * Time.fixedDeltaTime);
         /// Максимально альтернативная замена Rigidbody и Collider
-        float deltaDistance = groundDistance - hit.distance;
-        _transform.position += _normal * (deltaDistance > 0 ? deltaDistance : -0.2f * Time.fixedDeltaTime);
+        float deltaDistance = _groundDistance - hit.distance;
+        _transform.position += _normal * (deltaDistance > 0 ? deltaDistance : -0.4f * Time.fixedDeltaTime);
         Vector3 myForward = Vector3.Cross(_transform.right, _normal);
         Quaternion targetRot = Quaternion.LookRotation(myForward, _normal);
         _transform.rotation = targetRot;
-        _transform.Translate(0, 0, speed * Time.fixedDeltaTime);
+        _transform.Translate(0, 0, _speed * Time.fixedDeltaTime);
     }
 }

@@ -381,24 +381,9 @@ MonoBehaviour:
     blumb: 4
   - isPlayer: 1
     vehicle: 2
-    blumb: 1
-  - isPlayer: 1
-    vehicle: 2
-    blumb: 1
-  - isPlayer: 1
-    vehicle: 2
-    blumb: 2
-  - isPlayer: 1
-    vehicle: 2
-    blumb: 3
-  - isPlayer: 1
-    vehicle: 2
     blumb: 4
   - isPlayer: 1
     vehicle: 2
-    blumb: 1
-  - isPlayer: 1
-    vehicle: 2
     blumb: 2
   - isPlayer: 1
     vehicle: 2
@@ -406,6 +391,9 @@ MonoBehaviour:
   - isPlayer: 1
     vehicle: 2
     blumb: 1
+  - isPlayer: 1
+    vehicle: 2
+    blumb: 2
 --- !u!4 &1461094584
 Transform:
   m_ObjectHideFlags: 0

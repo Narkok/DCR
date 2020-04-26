@@ -9,8 +9,12 @@ public class Ammo: MonoBehaviour {
     private TrailRenderer _trail;
     private float _trailInitialTime;
 
+    /// Штука, чтобы не ранить самого себя
+    public int parentID = 0;
+
 
     private void Awake() {
+        StartCoroutine(ClearParent());
         StartCoroutine(SelfDestruction());
         _trail = GetComponentInChildren<TrailRenderer>();
         _trailInitialTime = _trail.time;
@@ -18,8 +22,23 @@ public class Ammo: MonoBehaviour {
     }
 
 
-    void Update() {
+    private void Update() {
         _trail.time = Mathf.Min(_trail.time + 0.2f * Time.deltaTime, _trailInitialTime);
+    }
+
+
+    private void OnTriggerEnter(Collider other) {
+        if (parentID == other.gameObject.GetInstanceID()) return;
+        /// Тут создать взрыв от типа ракеты
+        Vehicle vehicle = other.GetComponent<Vehicle>();
+        if (vehicle == null) return; 
+        vehicle.Damage(weaponType.Damage());
+        Destroy(gameObject);
+    }
+
+    private IEnumerator ClearParent() {
+        yield return new WaitForSeconds(1);
+        parentID = 0;
     }
 
 

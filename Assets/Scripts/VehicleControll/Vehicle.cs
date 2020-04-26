@@ -3,44 +3,68 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-[RequireComponent(typeof(WheelVehicle))]
+[RequireComponent(typeof(WheelController))]
 
 public class Vehicle: MonoBehaviour {
 
     [SerializeField] bool isPlayer = true;
     public bool IsPlayer {
         get { return isPlayer; }
-        set { isPlayer = value; }
+        set { 
+            isPlayer = value; 
+            _wheelController.IsPlayer = isPlayer;
+        }
     }
 
-    [SerializeField] public BlumbType blumbType;
-
-    private WheelVehicle _wheelController;
+    private WheelController _wheelController;
     private WeaponController _weaponController;
+    private GameObject _blumb;
+
+    public BlumbType BlumbType { get { return _blumbType; } }
+    [SerializeField] private BlumbType _blumbType;
+
+    public VehicleType VehicleType { get { return _vehicleType; } }
+    [SerializeField] private VehicleType _vehicleType;
+
+
+    public int HP { get { return hp; } }
+    public int MaxHP { get { return _vehicleType.MaxHP(); } }
+    [SerializeField] private int hp;
 
 
     public void Setup(Data data, Arena.Location location) {
         isPlayer = data.isPlayer;
-        blumbType = data.blumb;
+        _blumbType = data.blumb;
+        _vehicleType = data.vehicle;
         transform.position = location.point;
         transform.up = location.normal;
+        hp = _vehicleType.MaxHP();
         _weaponController = GetComponent<WeaponController>();
         SetupBlumb();
         SetupWheelController();
     }
 
 
+    public void Damage(int damage) {
+        hp -= damage;
+        if (hp <= 0) {
+            Destroy(_blumb);
+            Destroy(gameObject);
+        }
+    }
+
+
     private void SetupWheelController() {
-        _wheelController = GetComponent<WheelVehicle>();
+        _wheelController = GetComponent<WheelController>();
         _wheelController.IsPlayer = isPlayer;
+        _wheelController.maxSpeed = _vehicleType.MaxSpeed();
     }
 
 
     private void SetupBlumb() {
-        if (blumbType == BlumbType.None) return;
-        GOManager.Create("Blumbs/Blumb", SceneManager.Shared.BlumbContainer)
-            .GetComponent<Blumb>()
-            .Set(this, blumbType);
+        if (_blumbType == BlumbType.None) return;
+        _blumb = GOManager.Create("Blumbs/Blumb", SceneManager.Shared.BlumbContainer);
+        _blumb.GetComponent<Blumb>().Set(this, _blumbType);
     }
 
 
@@ -54,25 +78,5 @@ public class Vehicle: MonoBehaviour {
         public bool isPlayer;
         public VehicleType vehicle;
         public BlumbType blumb;
-    }
-}
-
-
-
-public enum VehicleType {
-    Delorian,
-    Shelby,
-    Monster
-}
-
-
-public static class VehicleTypeExtention {
-    public static string Path(this VehicleType type) {
-        switch (type) {
-            case VehicleType.Delorian: { return "Vehicles/Delorian"; }
-            case VehicleType.Shelby:   { return "Vehicles/Shelby"; }
-            case VehicleType.Monster:  { return "Vehicles/Monster"; }
-            default: return "";
-        }
     }
 }

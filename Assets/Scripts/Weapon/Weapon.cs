@@ -13,10 +13,13 @@ public class Weapon: MonoBehaviour {
     [SerializeField] private int _ammoCount = 0;
     public bool IsEmpty { get { return _ammoCount == 0; } }
 
+    private int _parentID;
 
-    public void SetType(WeaponType type) {
+
+    public void Setup(WeaponType type, int parentID) {
         _type = type;
         _ammoCount = type.AmmoInitialCount();
+        _parentID = parentID;
         StartCoroutine(CoolDown());
     }
 
@@ -30,6 +33,7 @@ public class Weapon: MonoBehaviour {
         if (!isAvalaible) { return; }
         isAvalaible = false;
         GameObject bullet = GOManager.Create(_type.AmmoPath(), SceneManager.Shared.AmmoContainer);
+        bullet.GetComponent<Ammo>().parentID = _parentID;
         FirePoint firePoint = GetComponentInChildren<FirePoint>();
         if (_type.IsCrawling()) {
             bullet.GetComponent<CrawlingBody>().Setup(firePoint.transform.position, firePoint.transform.rotation, _type.Speed());
