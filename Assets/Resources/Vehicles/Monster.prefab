@@ -1387,13 +1387,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6846464052563268446}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0.09434229, y: -0, z: -0, w: 0.99553984}
   m_LocalPosition: {x: 0, y: 1.44, z: -7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6846464052295204060}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 10.827001, y: 0, z: 0}
 --- !u!114 &8401486033530025082
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11270,7 +11270,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   diffGearing: 10
-  brakeForce: 3000
+  brakeForce: 4200
   steerAngle: 12
   steerSpeed: 0.12
   jumpVel: 1.1
