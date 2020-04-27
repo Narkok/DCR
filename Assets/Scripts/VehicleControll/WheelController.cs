@@ -125,13 +125,9 @@ public class WheelController : MonoBehaviour {
     // Disable boost
     [HideInInspector] public bool allowBoost = true;
 
-    // Maximum boost available
-    [SerializeField] float maxBoost = 10f;
-    public float MaxBoost { get { return maxBoost; } set {maxBoost = value;} }
-
     // Current boost available
-    [SerializeField] float boost = 10f;
-    public float Boost { get { return boost; } set { boost = Mathf.Clamp(value, 0f, maxBoost); } }
+    [SerializeField] float boost = 0;
+    public float Boost { get { return boost; } set { boost = Mathf.Clamp(value, 0f, VehicleTypeExtention.MaxBoost); } }
 
     // Regen boostRegen per second until it's back to maxBoost
     [Range(0f, 1f)]
@@ -165,7 +161,7 @@ public class WheelController : MonoBehaviour {
             boostSource.clip = boostClip;
         }
 
-		boost = maxBoost;
+		boost = VehicleTypeExtention.MaxBoost;
 
         _rb = GetComponent<Rigidbody>();
 
@@ -194,10 +190,10 @@ public class WheelController : MonoBehaviour {
             em.rateOverTime = handbrake ? 0 : Mathf.Lerp(em.rateOverTime.constant, Mathf.Clamp(150.0f * throttle, 30.0f, 100.0f), 0.1f);
         }
 
-        if (isPlayer && allowBoost) {
-            boost += Time.deltaTime * boostRegen;
-            if (boost > maxBoost) { boost = maxBoost; }
-        }
+        // if (isPlayer && allowBoost) {
+        //     boost += Time.deltaTime * boostRegen;
+        //     if (boost > VehicleTypeExtention.MaxBoost) { boost = VehicleTypeExtention.MaxBoost; }
+        // }
     }
         
     // Update everything

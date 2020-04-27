@@ -11,6 +11,8 @@ public enum VehicleType {
 
 
 public static class VehicleTypeExtention {
+    public static float MaxBoost = 8f;
+
     public static string Path(this VehicleType type) {
         switch (type) {
             case VehicleType.Delorian: { return "Vehicles/Delorian"; }

@@ -31,6 +31,12 @@ public class Vehicle: MonoBehaviour {
     public int MaxHP { get { return _vehicleType.MaxHP(); } }
     [SerializeField] private int hp;
 
+    public float Boost { get { return boost; } }
+    private float boost { 
+        get { return _wheelController.Boost; } 
+        set { _wheelController.Boost = value; }
+    }
+    
 
     public void Setup(Data data, Arena.Location location) {
         isPlayer = data.isPlayer;
