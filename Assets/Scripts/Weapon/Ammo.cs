@@ -29,15 +29,18 @@ public class Ammo: MonoBehaviour {
 
     private void OnTriggerEnter(Collider other) {
         if (parentID == other.gameObject.GetInstanceID()) return;
-        /// Тут создать взрыв от типа ракеты
         Vehicle vehicle = other.GetComponent<Vehicle>();
         if (vehicle == null) return; 
         vehicle.Damage(weaponType.Damage());
+        GOManager.Create(weaponType.ExplosionPath())
+            .GetComponent<Explosion>()
+            .Setup(transform.position, weaponType.ExplosionTime());
         Destroy(gameObject);
     }
+    
 
     private IEnumerator ClearParent() {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.2f);
         parentID = 0;
     }
 

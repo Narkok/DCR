@@ -128,4 +128,22 @@ public static class WeaponTypeExtension {
             default: return 0;
         }
     }
+
+
+    public static string ExplosionPath(this WeaponType type) {
+        switch (type) {
+            case WeaponType.MachineGun: { return "Explosions/Sparks"; }
+            case WeaponType.Cannon:     { return "Explosions/Sparks"; }
+            default: return "";
+        }
+    } 
+
+
+    public static float ExplosionTime(this WeaponType type) {
+        switch (type) {
+            case WeaponType.MachineGun: { return 2; }
+            case WeaponType.Cannon:     { return 2; }
+            default: return 0;
+        }
+    } 
 }
