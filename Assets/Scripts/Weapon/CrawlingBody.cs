@@ -32,7 +32,7 @@ public class CrawlingBody : MonoBehaviour {
         _normal = Vector3.Lerp(_normal, surfaceNormal, 10 * Time.fixedDeltaTime);
         /// Максимально альтернативная замена Rigidbody и Collider
         float deltaDistance = _groundDistance - hit.distance;
-        _transform.position += _normal * (deltaDistance > 0 ? deltaDistance : -0.4f * Time.fixedDeltaTime);
+        _transform.position += _normal * (deltaDistance > 0 ? deltaDistance : -0.8f * Time.fixedDeltaTime);
         Vector3 myForward = Vector3.Cross(_transform.right, _normal);
         Quaternion targetRot = Quaternion.LookRotation(myForward, _normal);
         _transform.rotation = targetRot;

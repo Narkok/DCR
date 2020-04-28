@@ -32,9 +32,14 @@ public class Ammo: MonoBehaviour {
         Vehicle vehicle = other.GetComponent<Vehicle>();
         if (vehicle == null) return; 
         vehicle.Damage(weaponType.Damage());
-        GOManager.Create(weaponType.ExplosionPath())
+
+        vehicle.GetComponent<Rigidbody>()
+            .AddForce((transform.forward - transform.up / 2) * 8000, ForceMode.Impulse);
+
+        GOManager.Create(weaponType.ExplosionPath(), SceneManager.Shared.ExplosionContainer)
             .GetComponent<Explosion>()
             .Setup(transform.position, weaponType.ExplosionTime());
+
         Destroy(gameObject);
     }
     

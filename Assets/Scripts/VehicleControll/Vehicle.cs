@@ -55,7 +55,7 @@ public class Vehicle: MonoBehaviour {
         hp -= damage;
         if (hp <= 0) {
             Destroy(_blumb);
-            Destroy(gameObject);
+            SceneManager.Shared.Destroy(this);
         }
     }
 

@@ -12,7 +12,7 @@ public class Equipment: MonoBehaviour {
         Vehicle vehicle = other.GetComponent<Vehicle>();
         if (vehicle == null) return; 
         if (!vehicle.SetWeapon(_type)) return;
-        Destroy(gameObject);
+        SceneManager.Shared.Destroy(this);
     }
 
 

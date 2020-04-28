@@ -13,6 +13,7 @@ public class SceneManager: MonoBehaviour {
     private Arena _arena;
     public Arena Arena  { get { return _arena; } }
 
+    [HideInInspector] public Transform ExplosionContainer;
     [HideInInspector] public Transform EquipmentContainer;
     [HideInInspector] public Transform VehicleContainer;
     [HideInInspector] public Transform BlumbContainer;
@@ -31,6 +32,7 @@ public class SceneManager: MonoBehaviour {
         _arena = GOManager.Create(arenaType.ArenaPath()).GetComponent<Arena>();
         _camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<GameCamera>();
 
+        ExplosionContainer = new GameObject("Explosions").transform;
         EquipmentContainer = new GameObject("Equipments").transform;
         VehicleContainer = new GameObject("Vehicles").transform;
         BlumbContainer = new GameObject("Blumbs").transform;
@@ -48,8 +50,7 @@ public class SceneManager: MonoBehaviour {
         for (int i = 0; i < vehiclesInfo.Length; i++) {
             Vehicle.Data data = vehiclesInfo[i];
             Arena.Location location = _arena.RandomLocation;
-            // Vehicle vehicle = GOManager.Create(data.vehicle.Path(), VehicleContainer).GetComponent<Vehicle>();
-            Vehicle vehicle = GOManager.Create(data.vehicle.Path()).GetComponent<Vehicle>();
+            Vehicle vehicle = GOManager.Create(data.vehicle.Path(), VehicleContainer).GetComponent<Vehicle>();
             vehicle.Setup(data, location);
             if (data.isPlayer) { _camera.Set(vehicle.transform); }
             _vehicles.Add(vehicle);
@@ -73,5 +74,19 @@ public class SceneManager: MonoBehaviour {
     /// Генерация всякой фигни, которую можно подобрать на арене
     private void GenerateStuff() {
         _stuff.Clear();
+    }
+
+
+    /// Удаление подобранного оружия
+    public void Destroy(Equipment equipment) {
+        _equipment.Remove(equipment);
+        Destroy(equipment.gameObject);
+    }
+
+
+    /// Удаление уничтоженной машины со сцены
+    public void Destroy(Vehicle vehicle) {
+        _vehicles.Remove(vehicle);
+        Destroy(vehicle.gameObject);
     }
 }
