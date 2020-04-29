@@ -79,6 +79,12 @@ public class Vehicle: MonoBehaviour {
     }
 
 
+    public bool SetStuff(StuffType stuffType) {
+        /// Реакция на подобранный бонус
+        return true;
+    }
+
+
     [System.Serializable]
     public struct Data {
         public bool isPlayer;

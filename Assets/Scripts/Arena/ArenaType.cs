@@ -18,6 +18,7 @@ public static class ArenaTypeExtension {
         }
     }
 
+
     public static int EquipmentCount(this ArenaType type) {
         switch (type) {
             case ArenaType.Sphere: { return 30; }
@@ -26,18 +27,11 @@ public static class ArenaTypeExtension {
         }
     }
 
-    public static int AidKitCount(this ArenaType type) {
-        switch (type) {
-            case ArenaType.Sphere: { return 2; }
-            case ArenaType.Torus: { return 3; }
-            default: return 0;
-        }
-    }
 
-    public static int NitroCount(this ArenaType type) {
+    public static int StuffCount(this ArenaType type) {
         switch (type) {
-            case ArenaType.Sphere: { return 2; }
-            case ArenaType.Torus: { return 3; }
+            case ArenaType.Sphere: { return 5; }
+            case ArenaType.Torus: { return 4; }
             default: return 0;
         }
     }

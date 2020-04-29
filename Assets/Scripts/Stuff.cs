@@ -2,4 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Stuff: MonoBehaviour {}
+
+public class Stuff: MonoBehaviour {
+
+    [SerializeField] private StuffType _type;
+    public StuffType Type { get { return _type; } }
+
+
+    private void OnTriggerEnter(Collider other) {
+        Vehicle vehicle = other.GetComponent<Vehicle>();
+        if (vehicle == null) return; 
+        vehicle.SetStuff(_type);
+        SceneManager.Shared.Destroy(this);
+    }
+
+
+    public void Setup(Arena.Location location, StuffType type) {
+        _type = type;
+        transform.position = location.point;
+        transform.up = location.normal;
+    }
+}

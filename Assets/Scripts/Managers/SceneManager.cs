@@ -17,6 +17,7 @@ public class SceneManager: MonoBehaviour {
     [HideInInspector] public Transform EquipmentContainer;
     [HideInInspector] public Transform VehicleContainer;
     [HideInInspector] public Transform BlumbContainer;
+    [HideInInspector] public Transform StuffContainer;
     [HideInInspector] public Transform AmmoContainer;
 
     private GameCamera _camera;
@@ -36,6 +37,7 @@ public class SceneManager: MonoBehaviour {
         EquipmentContainer = new GameObject("Equipments").transform;
         VehicleContainer = new GameObject("Vehicles").transform;
         BlumbContainer = new GameObject("Blumbs").transform;
+        StuffContainer = new GameObject("Stuff").transform;
         AmmoContainer = new GameObject("Ammo").transform;
 
         GenerateEquipment();
@@ -74,6 +76,13 @@ public class SceneManager: MonoBehaviour {
     /// Генерация всякой фигни, которую можно подобрать на арене
     private void GenerateStuff() {
         _stuff.Clear();
+        for (int i = 0; i < arenaType.StuffCount(); i++) {
+            Arena.Location location = _arena.RandomLocation;
+            StuffType st = StuffTypeExtention.RandomWeapon();
+            Stuff stuff = GOManager.Create(st.Path(), StuffContainer).GetComponent<Stuff>();
+            stuff.Setup(location, st);
+            _stuff.Add(stuff);
+        }
     }
 
 
@@ -81,6 +90,13 @@ public class SceneManager: MonoBehaviour {
     public void Destroy(Equipment equipment) {
         _equipment.Remove(equipment);
         Destroy(equipment.gameObject);
+    }
+
+
+    /// Удаление подобранного бонуса
+    public void Destroy(Stuff stuff) {
+        _stuff.Remove(stuff);
+        Destroy(stuff.gameObject);
     }
 
 

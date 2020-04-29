@@ -22,6 +22,7 @@ public static class VehicleTypeExtention {
         }
     }
 
+
     public static int MaxHP(this VehicleType type) {
         switch (type) {
             case VehicleType.Delorian: { return 100; }
@@ -30,6 +31,7 @@ public static class VehicleTypeExtention {
             default: return 0;
         }
     }
+
 
     public static int MaxSpeed(this VehicleType type) {
         switch (type) {
