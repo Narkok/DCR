@@ -35,7 +35,7 @@ public static class VehicleTypeExtention {
         switch (type) {
             case VehicleType.Delorian: { return 120; }
             case VehicleType.Shelby:   { return 100; }
-            case VehicleType.Monster:  { return 100; }
+            case VehicleType.Monster:  { return 85; }
             default: return 0;
         }
     }
