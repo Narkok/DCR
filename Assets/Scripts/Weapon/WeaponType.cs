@@ -16,7 +16,7 @@ public enum AmmoType {
 }
 
 
-public static class WeaponTypeExtension {
+public static class WeaponExtension {
 
     public static WeaponType RandomWeapon() {
         return List.RandomElement();

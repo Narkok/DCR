@@ -10,9 +10,13 @@ public enum StuffType {
 }
 
 
-public static class StuffTypeExtention {
+public static class StuffExtention {
 
-    public static StuffType RandomWeapon() {
+    public static int SmallKitHPSize = 40;
+    public static int LargeKitHPSize = 80;
+    public static float NitroSize = VehicleExtention.MaxBoost;
+
+    public static StuffType RandomStuff() {
         return List.RandomElement();
     }
 

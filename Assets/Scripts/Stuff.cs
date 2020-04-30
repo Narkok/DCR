@@ -12,7 +12,7 @@ public class Stuff: MonoBehaviour {
     private void OnTriggerEnter(Collider other) {
         Vehicle vehicle = other.GetComponent<Vehicle>();
         if (vehicle == null) return; 
-        vehicle.SetStuff(_type);
+        if (!vehicle.SetStuff(_type)) return;
         SceneManager.Shared.Destroy(this);
     }
 

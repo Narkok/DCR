@@ -65,7 +65,7 @@ public class SceneManager: MonoBehaviour {
         _equipment.Clear();
         for (int i = 0; i < arenaType.EquipmentCount(); i++) {
             Arena.Location location = _arena.RandomLocation;
-            WeaponType wt = WeaponTypeExtension.RandomWeapon();
+            WeaponType wt = WeaponExtension.RandomWeapon();
             Equipment equipment = GOManager.Create(wt.EquipmentPath(), EquipmentContainer).GetComponent<Equipment>();
             equipment.Setup(location, wt);
             _equipment.Add(equipment);
@@ -78,7 +78,7 @@ public class SceneManager: MonoBehaviour {
         _stuff.Clear();
         for (int i = 0; i < arenaType.StuffCount(); i++) {
             Arena.Location location = _arena.RandomLocation;
-            StuffType st = StuffTypeExtention.RandomWeapon();
+            StuffType st = StuffExtention.RandomStuff();
             Stuff stuff = GOManager.Create(st.Path(), StuffContainer).GetComponent<Stuff>();
             stuff.Setup(location, st);
             _stuff.Add(stuff);

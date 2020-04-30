@@ -9,7 +9,7 @@ public enum ArenaType {
 }
 
 
-public static class ArenaTypeExtension {
+public static class ArenaExtension {
     public static string ArenaPath(this ArenaType type) {
         switch (type) {
             case ArenaType.Sphere: { return "Arenas/Sphere"; }

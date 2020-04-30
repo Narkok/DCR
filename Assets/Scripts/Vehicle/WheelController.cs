@@ -127,7 +127,7 @@ public class WheelController : MonoBehaviour {
 
     // Current boost available
     [SerializeField] float boost = 0;
-    public float Boost { get { return boost; } set { boost = Mathf.Clamp(value, 0f, VehicleTypeExtention.MaxBoost); } }
+    public float Boost { get { return boost; } set { boost = Mathf.Clamp(value, 0f, VehicleExtention.MaxBoost); } }
 
     // Regen boostRegen per second until it's back to maxBoost
     [Range(0f, 1f)]
@@ -161,7 +161,7 @@ public class WheelController : MonoBehaviour {
             boostSource.clip = boostClip;
         }
 
-		boost = VehicleTypeExtention.MaxBoost;
+		boost = VehicleExtention.MaxBoost;
 
         _rb = GetComponent<Rigidbody>();
 
@@ -261,7 +261,7 @@ public class WheelController : MonoBehaviour {
         }
 
         // Boost
-        if (boosting && allowBoost && boost > 0.1f) {
+        if (boosting && allowBoost && boost > 0) {
             
             if (Mathf.Abs(speed) < maxSpeed + boostSpeedIncrease)
                 _rb.AddForce(transform.forward * boostForce);

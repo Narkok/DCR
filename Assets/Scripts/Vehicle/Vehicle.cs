@@ -80,7 +80,23 @@ public class Vehicle: MonoBehaviour {
 
 
     public bool SetStuff(StuffType stuffType) {
-        /// Реакция на подобранный бонус
+        switch (stuffType) {
+            case StuffType.SmallKit: { 
+                if (hp == MaxHP) return false;
+                hp = Mathf.Clamp(hp + StuffExtention.SmallKitHPSize, 0, MaxHP);
+                return true;
+            }
+            case StuffType.LargeKit: { 
+                if (hp == MaxHP) return false;
+                hp = Mathf.Clamp(hp + StuffExtention.LargeKitHPSize, 0, MaxHP);
+                return true;
+            }
+            case StuffType.Nitro:    {
+                if (boost == VehicleExtention.MaxBoost) return false;
+                boost = Mathf.Clamp(boost + StuffExtention.NitroSize, 0, VehicleExtention.MaxBoost);
+                return true;
+            }
+        }
         return true;
     }
 
