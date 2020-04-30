@@ -28,7 +28,6 @@ public class GravityProcessor: MonoBehaviour {
     public Vector3 Normal(Vector3 point) {
         Vector3 closest = Closest(point);
         Vector3 result = (point - closest).normalized;
-        GDebug.AddDirection(point, result);
         return result;
     }
 

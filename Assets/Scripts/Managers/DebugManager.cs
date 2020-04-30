@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GDebug: MonoBehaviour {
+public class DebugManager: MonoBehaviour {
 
     public class Line {
         public Vector3 start;
@@ -73,11 +73,11 @@ public class GDebug: MonoBehaviour {
 
     private void OnDrawGizmos() {
         Gizmos.color = pointColor;
-        foreach (Vector3 point in GDebug.points) {
+        foreach (Vector3 point in DebugManager.points) {
             Gizmos.DrawSphere(point, pointRadius);
         }
 
-        foreach (Line line in GDebug.lines) {
+        foreach (Line line in DebugManager.lines) {
             Gizmos.color = linePointsColor;
             Gizmos.DrawSphere(line.start, pointRadius);
             Gizmos.DrawSphere(line.end, pointRadius);
@@ -85,7 +85,7 @@ public class GDebug: MonoBehaviour {
             Gizmos.DrawLine(line.start, line.end);
         }
 
-        foreach (Direction direction in GDebug.directions) {
+        foreach (Direction direction in DebugManager.directions) {
             Gizmos.color = directionStartColor;
             Gizmos.DrawSphere(direction.start, pointRadius);
             Gizmos.color = directionColor;
