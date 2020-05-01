@@ -7,13 +7,10 @@ using UnityEngine;
 
 public class Vehicle: MonoBehaviour {
 
-    [SerializeField] bool isPlayer = true;
-    public bool IsPlayer {
-        get { return isPlayer; }
-        set { 
-            isPlayer = value; 
-            _wheelController.IsPlayer = isPlayer;
-        }
+    [SerializeField] ControlType controlType = ControlType.AI;
+    public ControlType ControlType {
+        get { return controlType; }
+        set { controlType = value; }
     }
 
     private WheelController _wheelController;
@@ -27,21 +24,30 @@ public class Vehicle: MonoBehaviour {
     [SerializeField] private VehicleType _vehicleType;
 
 
-    public int HP { get { return hp; } }
+    public int HP { 
+        get { return hp; }
+        set {
+            hp = value;
+            if (ControlType.isPlayer()) GameCanvasManager.Shared.SetHP(hp / (float)MaxHP);
+        } 
+    }
     public int MaxHP { get { return _vehicleType.MaxHP(); } }
     [SerializeField] private int hp;
 
     public float Boost { get { return boost; } }
     private float boost { 
         get { return _wheelController.Boost; } 
-        set { _wheelController.Boost = value; }
+        set { 
+            _wheelController.Boost = value; 
+            GameCanvasManager.Shared.SetNitro(value / VehicleExtention.MaxBoost);
+        }
     }
     
 
     public void Setup(Data data, Arena.Location location) {
-        isPlayer = data.isPlayer;
-        _blumbType = data.blumb;
-        _vehicleType = data.vehicle;
+        ControlType = data.Control;
+        _blumbType = data.Blumb;
+        _vehicleType = data.Vehicle;
         transform.position = location.point;
         transform.up = location.normal;
         hp = _vehicleType.MaxHP();
@@ -52,8 +58,8 @@ public class Vehicle: MonoBehaviour {
 
 
     public void Damage(int damage) {
-        hp -= damage;
-        if (hp <= 0) {
+        HP -= damage;
+        if (HP <= 0) {
             Destroy(_blumb);
             SceneManager.Shared.Destroy(this);
         }
@@ -62,7 +68,7 @@ public class Vehicle: MonoBehaviour {
 
     private void SetupWheelController() {
         _wheelController = GetComponent<WheelController>();
-        _wheelController.IsPlayer = isPlayer;
+        _wheelController.ControlType = ControlType;
         _wheelController.maxSpeed = _vehicleType.MaxSpeed();
     }
 
@@ -82,15 +88,17 @@ public class Vehicle: MonoBehaviour {
     public bool SetStuff(StuffType stuffType) {
         switch (stuffType) {
             case StuffType.SmallKit: { 
-                if (hp == MaxHP) return false;
-                hp = Mathf.Clamp(hp + StuffExtention.SmallKitHPSize, 0, MaxHP);
+                if (HP == MaxHP) return false;
+                HP = Mathf.Clamp(hp + StuffExtention.SmallKitHPSize, 0, MaxHP);
                 return true;
             }
+
             case StuffType.LargeKit: { 
-                if (hp == MaxHP) return false;
-                hp = Mathf.Clamp(hp + StuffExtention.LargeKitHPSize, 0, MaxHP);
+                if (HP == MaxHP) return false;
+                HP = Mathf.Clamp(hp + StuffExtention.LargeKitHPSize, 0, MaxHP);
                 return true;
             }
+
             case StuffType.Nitro:    {
                 if (boost == VehicleExtention.MaxBoost) return false;
                 boost = Mathf.Clamp(boost + StuffExtention.NitroSize, 0, VehicleExtention.MaxBoost);
@@ -103,8 +111,8 @@ public class Vehicle: MonoBehaviour {
 
     [System.Serializable]
     public struct Data {
-        public bool isPlayer;
-        public VehicleType vehicle;
-        public BlumbType blumb;
+        public ControlType Control;
+        public VehicleType Vehicle;
+        public BlumbType Blumb;
     }
 }

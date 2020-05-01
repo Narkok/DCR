@@ -8,10 +8,10 @@ public class WheelController : MonoBehaviour {
         
     [Header("Inputs")]
     // If isPlayer is false inputs are ignored
-    [SerializeField] bool isPlayer = true;
-    public bool IsPlayer {
-        get { return isPlayer; }
-        set { isPlayer = value; }
+    [SerializeField] ControlType controlType = ControlType.AI;
+    public ControlType ControlType {
+        get { return controlType; }
+        set { controlType = value; }
     } 
         
     /* 
@@ -157,52 +157,41 @@ public class WheelController : MonoBehaviour {
 
     // Init rigidbody, center of mass, wheels and more
     void Start() {
-        if (boostClip != null) {
+        if (boostClip != null) 
             boostSource.clip = boostClip;
-        }
 
 		boost = VehicleExtention.MaxBoost;
 
         _rb = GetComponent<Rigidbody>();
 
         if (_rb != null && centerOfMass != null)
-        {
             _rb.centerOfMass = centerOfMass.localPosition;
-        }
 
         wheels = GetComponentsInChildren<WheelCollider>();
 
         // Set the motor torque to a non null value because 0 means the wheels won't turn no matter what
-        foreach (WheelCollider wheel in wheels)
-        {
+        foreach (WheelCollider wheel in wheels) {
             wheel.motorTorque = 0.0001f;
             wheel.ConfigureVehicleSubsteps(5, 12, 16);
         }
     }
 
-    // Visual feedbacks and boost regen
-    void Update()
-    {
-        foreach (ParticleSystem gasParticle in gasParticles)
-        {
+
+    void Update() {
+        foreach (ParticleSystem gasParticle in gasParticles) {
             gasParticle.Play();
             ParticleSystem.EmissionModule em = gasParticle.emission;
             em.rateOverTime = handbrake ? 0 : Mathf.Lerp(em.rateOverTime.constant, Mathf.Clamp(150.0f * throttle, 30.0f, 100.0f), 0.1f);
         }
-
-        // if (isPlayer && allowBoost) {
-        //     boost += Time.deltaTime * boostRegen;
-        //     if (boost > VehicleTypeExtention.MaxBoost) { boost = VehicleTypeExtention.MaxBoost; }
-        // }
     }
         
-    // Update everything
+        
     void FixedUpdate () {
         // Mesure current speed
         speed = transform.InverseTransformDirection(_rb.velocity).z * 3.6f;
 
         // Get all the inputs!
-        if (isPlayer) {
+        if (!controlType.isAI()) {
             handbrake = InputManager.isActive(InputManager.Break);
             // Accelerate & brake
             throttle = (Mathf.Abs(speed) < maxSpeed) ? (InputManager.Input(InputManager.Throttle) - InputManager.Input(InputManager.Break)) : 0;
@@ -216,90 +205,72 @@ public class WheelController : MonoBehaviour {
             jumping = InputManager.isActive(InputManager.Jump);
         }
 
-        // Direction
-        foreach (WheelCollider wheel in turnWheel)
-        {
+        /// Поворот
+        foreach (WheelCollider wheel in turnWheel) {
             wheel.steerAngle = Mathf.Lerp(wheel.steerAngle, steering, steerSpeed);
         }
 
-        foreach (WheelCollider wheel in wheels)
-        {
+        foreach (WheelCollider wheel in wheels) {
             wheel.brakeTorque = 0;
         }
 
-        // Handbrake
-        if (handbrake)
-        {
-            foreach (WheelCollider wheel in wheels)
-            {
+        /// Тормоз
+        if (handbrake) {
+            foreach (WheelCollider wheel in wheels) {
                 // Don't zero out this value or the wheel completly lock up
                 wheel.motorTorque = 0.0001f;
                 wheel.brakeTorque = brakeForce;
             }
         }
-        else if (Mathf.Abs(speed) < 4 || Mathf.Sign(speed) == Mathf.Sign(throttle))
-        {
-            foreach (WheelCollider wheel in driveWheel)
-            {
+        else if (Mathf.Abs(speed) < 4 || Mathf.Sign(speed) == Mathf.Sign(throttle)) {
+            foreach (WheelCollider wheel in driveWheel) 
                 wheel.motorTorque = throttle * motorTorque.Evaluate(speed) * diffGearing / driveWheel.Length;
-            }
         }
-        else
-        {
-            foreach (WheelCollider wheel in wheels)
-            {
+        else {
+            foreach (WheelCollider wheel in wheels) {
                 wheel.brakeTorque = Mathf.Abs(throttle) * brakeForce;
             }
         }
 
-        // Jump
-        if (jumping && isPlayer) {
-            if (!IsGrounded)
-                return;
-                
+        /// Прыжок
+        if (jumping && !controlType.isAI()) {
+            if (!IsGrounded) return;
             _rb.velocity += transform.up * jumpVel;
         }
 
-        // Boost
+        /// Нитро
         if (boosting && allowBoost && boost > 0) {
             
             if (Mathf.Abs(speed) < maxSpeed + boostSpeedIncrease)
                 _rb.AddForce(transform.forward * boostForce);
 
-            boost -= Time.fixedDeltaTime;
-            if (boost < 0f) { boost = 0f; }
+            boost = Mathf.Max(0, boost - Time.fixedDeltaTime);
+            GameCanvasManager.Shared.SetNitro(boost / VehicleExtention.MaxBoost);
 
-            if (boostParticles.Length > 0 && !boostParticles[0].isPlaying) {
-                foreach (ParticleSystem boostParticle in boostParticles) {
+            if (boostParticles.Length > 0 && !boostParticles[0].isPlaying)
+                foreach (ParticleSystem boostParticle in boostParticles)
                     boostParticle.Play();
-                }
-            }
 
-            if (boostSource != null && !boostSource.isPlaying) {
+            if (boostSource != null && !boostSource.isPlaying) 
                 boostSource.Play();
-            }
-        } else {
-            if (boostParticles.Length > 0 && boostParticles[0].isPlaying) {
-                foreach (ParticleSystem boostParticle in boostParticles) {
-                    boostParticle.Stop();
-                }
-            }
 
-            if (boostSource != null && boostSource.isPlaying) {
+        } else {
+            if (boostParticles.Length > 0 && boostParticles[0].isPlaying)
+                foreach (ParticleSystem boostParticle in boostParticles)
+                    boostParticle.Stop();
+
+            if (boostSource != null && boostSource.isPlaying)
                 boostSource.Stop();
-            }
         }
 
-        // Drift
+        /// Дрифт
         if (drift && allowDrift) {
             Vector3 driftForce = -transform.right;
             driftForce.y = 0.0f;
             driftForce.Normalize();
 
-            if (steering != 0)
-                driftForce *= _rb.mass * speed/7f * throttle * steering/steerAngle;
+            if (steering != 0) driftForce *= _rb.mass * speed/7f * throttle * steering/steerAngle;
             Vector3 driftTorque = transform.up * 0.1f * steering/steerAngle;
-
 
             _rb.AddForce(driftForce * driftIntensity, ForceMode.Force);
             _rb.AddTorque(driftTorque * driftIntensity, ForceMode.VelocityChange);             

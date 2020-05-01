@@ -52,9 +52,9 @@ public class SceneManager: MonoBehaviour {
         for (int i = 0; i < vehiclesInfo.Length; i++) {
             Vehicle.Data data = vehiclesInfo[i];
             Arena.Location location = _arena.RandomLocation;
-            Vehicle vehicle = GOManager.Create(data.vehicle.Path(), VehicleContainer).GetComponent<Vehicle>();
+            Vehicle vehicle = GOManager.Create(data.Vehicle.Path(), VehicleContainer).GetComponent<Vehicle>();
             vehicle.Setup(data, location);
-            if (data.isPlayer) { _camera.Set(vehicle.transform); }
+            if (data.Control.isPlayer()) { _camera.Set(vehicle.transform); }
             _vehicles.Add(vehicle);
         }
     }
