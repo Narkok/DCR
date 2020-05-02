@@ -907,10 +907,10 @@ MonoBehaviour:
   - Control: 1
     Vehicle: 2
     Blumb: 4
-  - Control: 1
+  - Control: 2
     Vehicle: 2
     Blumb: 3
-  - Control: 1
+  - Control: 2
     Vehicle: 2
     Blumb: 1
   - Control: 0

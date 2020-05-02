@@ -251,7 +251,9 @@ public class WheelController : MonoBehaviour {
                 _rb.AddForce(transform.forward * boostForce);
 
             boost = Mathf.Max(0, boost - Time.fixedDeltaTime);
-            GameCanvasManager.Shared.SetNitro(boost / VehicleExtention.MaxBoost);
+            
+            if (controlType.isPlayer()) 
+                GameCanvasManager.Shared.SetNitro(boost / VehicleExtention.MaxBoost);
 
             if (boostParticles.Length > 0 && !boostParticles[0].isPlaying)
                 foreach (ParticleSystem boostParticle in boostParticles)
