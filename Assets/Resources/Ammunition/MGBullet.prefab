@@ -48,6 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponType: 0
+  parentID: 0
 --- !u!114 &2646614269881778276
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -199,7 +200,7 @@ TrailRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 64b2437fdffd44d4c9e8380481536f2b, type: 2}
+  - {fileID: 2100000, guid: 14d14273d62ab44109504f7b5ee6852f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

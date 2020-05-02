@@ -819,6 +819,7 @@ GameObject:
   - component: {fileID: 5570197401832280344}
   - component: {fileID: 5570197401835147576}
   - component: {fileID: 5570197401834181624}
+  - component: {fileID: 2463435023420965532}
   m_Layer: 0
   m_Name: MonsterBackLightsMesh
   m_TagString: Untagged
@@ -865,7 +866,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9f1b719e81a08403a91a83f233205754, type: 3}
+  - {fileID: 2100000, guid: 0a7a3f0670aaa4558a6c27315ff4b764, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -885,6 +886,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &2463435023420965532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5570197401832246584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 086c84893802d4a53815c43894f9741b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enabledColor: {r: 1, g: 0.012048194, b: 0, a: 1}
+  disabledColor: {r: 0.33962262, g: 0, b: 0, a: 1}
 --- !u!1 &5570197401832246586
 GameObject:
   m_ObjectHideFlags: 0
@@ -11186,9 +11201,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ef30429bdcde497faeecb50bbfadc99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isPlayer: 1
+  controlType: 1
   _blumbType: 0
   _vehicleType: 2
+  hp: 0
 --- !u!114 &114391695480690562
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11225,7 +11241,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c241727a8fc83048b56bdd0b450f8fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isPlayer: 1
+  controlType: 1
   turnInputCurve:
     serializedVersion: 2
     m_Curve:
@@ -11316,7 +11332,6 @@ MonoBehaviour:
   - {fileID: 6755695844450442762}
   - {fileID: 6756115543082937634}
   allowBoost: 1
-  maxBoost: 12
   boost: 12
   boostRegen: 1
   boostForce: 5000

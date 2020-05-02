@@ -12,6 +12,7 @@ TagManager:
   - Car
   - Ammo
   - Undefined
+  - BackLights
   layers:
   - Default
   - TransparentFX

@@ -155,6 +155,8 @@ public class WheelController : MonoBehaviour {
     Rigidbody _rb;
     WheelCollider[] wheels;
 
+    private BackLights backLights;
+
     // Init rigidbody, center of mass, wheels and more
     void Start() {
         if (boostClip != null) 
@@ -174,6 +176,8 @@ public class WheelController : MonoBehaviour {
             wheel.motorTorque = 0.0001f;
             wheel.ConfigureVehicleSubsteps(5, 12, 16);
         }
+
+        backLights = GetComponentInChildren<BackLights>();
     }
 
 
@@ -194,7 +198,7 @@ public class WheelController : MonoBehaviour {
         if (!controlType.isAI()) {
             handbrake = InputManager.isActive(InputManager.Break);
             // Accelerate & brake
-            throttle = (Mathf.Abs(speed) < maxSpeed) ? (InputManager.Input(InputManager.Throttle) - InputManager.Input(InputManager.Break)) : 0;
+            throttle = InputManager.Input(InputManager.Throttle) - InputManager.Input(InputManager.Break);
             // Boost
             boosting = InputManager.isActive(InputManager.Boost);
             // Turn
@@ -203,6 +207,8 @@ public class WheelController : MonoBehaviour {
             drift = InputManager.isActive(InputManager.Drift) && (_rb.velocity.sqrMagnitude > 100) || handbrake;
             // Jump
             jumping = InputManager.isActive(InputManager.Jump);
+
+            backLights.isEnabled = handbrake || (throttle < 0);
         }
 
         /// Поворот
@@ -224,7 +230,7 @@ public class WheelController : MonoBehaviour {
         }
         else if (Mathf.Abs(speed) < 4 || Mathf.Sign(speed) == Mathf.Sign(throttle)) {
             foreach (WheelCollider wheel in driveWheel) 
-                wheel.motorTorque = throttle * motorTorque.Evaluate(speed) * diffGearing / driveWheel.Length;
+                wheel.motorTorque =  (Mathf.Abs(speed) < maxSpeed ? throttle : 0) * motorTorque.Evaluate(speed) * diffGearing / driveWheel.Length;
         }
         else {
             foreach (WheelCollider wheel in wheels) {
