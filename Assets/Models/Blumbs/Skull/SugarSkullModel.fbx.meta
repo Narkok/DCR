@@ -1,22 +1,14 @@
 fileFormatVersion: 2
-guid: 5c614b4f82c604c7b95cef8cf8b1f244
+guid: 5ee689602fd8345ecb7380355396282b
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: Eyes
-    100002: //RootNode
-    100004: Skull
-    400000: Eyes
-    400002: //RootNode
-    400004: Skull
-    2100000: No Name
-    2300000: Eyes
-    2300002: Skull
-    3300000: Eyes
-    3300002: Skull
-    4300000: Skull
-    4300002: Eyes
-    2186277476908879412: ImportLogs
+    100000: //RootNode
+    400000: //RootNode
+    2100000: SugarSkullMaterial
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: SugarSkullMesh
   externalObjects: {}
   materials:
     importMaterials: 1
