@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class WheelController : MonoBehaviour {
+public class WheelController: MonoBehaviour {
         
     [Header("Inputs")]
     // If isPlayer is false inputs are ignored
@@ -117,10 +117,6 @@ public class WheelController : MonoBehaviour {
     [SerializeField] float speed = 0.0f;
     public float Speed { get{ return speed; } }
 
-    [Header("Particles")]
-    // Exhaust fumes
-    [SerializeField] ParticleSystem[] gasParticles;
-
     [Header("Boost")]
     // Disable boost
     [HideInInspector] public bool allowBoost = true;
@@ -133,11 +129,6 @@ public class WheelController : MonoBehaviour {
     [Range(0f, 1f)]
     [SerializeField] float boostRegen = 0.2f;
     public float BoostRegen { get { return boostRegen; } set { boostRegen = Mathf.Clamp01(value); } }
-
-    /*
-        *  The force applied to the car when boosting
-        *  NOTE: the boost does not care if the car is grounded or not
-        */
     [SerializeField] float boostForce = 5000;
     public float BoostForce { get { return boostForce; } set { boostForce = value; } }
 
@@ -145,22 +136,13 @@ public class WheelController : MonoBehaviour {
     public bool boosting = false;
     // Use this to jump when IsPlayer is set to false
     public bool jumping = false;
-
-    // Boost particles and sound
-    [SerializeField] ParticleSystem[] boostParticles;
-    [SerializeField] AudioClip boostClip;
-    [SerializeField] AudioSource boostSource;
         
     // Private variables set at the start
     Rigidbody _rb;
     WheelCollider[] wheels;
 
-    private BackLights backLights;
-
     // Init rigidbody, center of mass, wheels and more
     void Start() {
-        if (boostClip != null) 
-            boostSource.clip = boostClip;
 
 		boost = VehicleExtention.MaxBoost;
 
@@ -175,17 +157,6 @@ public class WheelController : MonoBehaviour {
         foreach (WheelCollider wheel in wheels) {
             wheel.motorTorque = 0.0001f;
             wheel.ConfigureVehicleSubsteps(5, 12, 16);
-        }
-
-        backLights = GetComponentInChildren<BackLights>();
-    }
-
-
-    void Update() {
-        foreach (ParticleSystem gasParticle in gasParticles) {
-            gasParticle.Play();
-            ParticleSystem.EmissionModule em = gasParticle.emission;
-            em.rateOverTime = handbrake ? 0 : Mathf.Lerp(em.rateOverTime.constant, Mathf.Clamp(150.0f * throttle, 30.0f, 100.0f), 0.1f);
         }
     }
         
@@ -207,8 +178,6 @@ public class WheelController : MonoBehaviour {
             drift = InputManager.isActive(InputManager.Drift) && (_rb.velocity.sqrMagnitude > 100) || handbrake;
             // Jump
             jumping = InputManager.isActive(InputManager.Jump);
-
-            backLights.isEnabled = handbrake || (throttle < 0);
         }
 
         /// Поворот
@@ -246,29 +215,9 @@ public class WheelController : MonoBehaviour {
 
         /// Нитро
         if (boosting && allowBoost && boost > 0) {
-            
-            if (Mathf.Abs(speed) < maxSpeed + boostSpeedIncrease)
-                _rb.AddForce(transform.forward * boostForce);
-
+            if (Mathf.Abs(speed) < maxSpeed + boostSpeedIncrease) _rb.AddForce(transform.forward * boostForce);
             boost = Mathf.Max(0, boost - Time.fixedDeltaTime);
-            
-            if (controlType.isPlayer()) 
-                GameCanvasManager.Shared.SetNitro(boost / VehicleExtention.MaxBoost);
-
-            if (boostParticles.Length > 0 && !boostParticles[0].isPlaying)
-                foreach (ParticleSystem boostParticle in boostParticles)
-                    boostParticle.Play();
-
-            if (boostSource != null && !boostSource.isPlaying) 
-                boostSource.Play();
-
-        } else {
-            if (boostParticles.Length > 0 && boostParticles[0].isPlaying)
-                foreach (ParticleSystem boostParticle in boostParticles)
-                    boostParticle.Stop();
-
-            if (boostSource != null && boostSource.isPlaying)
-                boostSource.Stop();
+            if (controlType.isPlayer()) GameCanvasManager.Shared.SetNitro(boost / VehicleExtention.MaxBoost);
         }
 
         /// Дрифт

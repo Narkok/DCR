@@ -54,8 +54,13 @@ public class SceneManager: MonoBehaviour {
             Arena.Location location = _arena.RandomLocation;
             Vehicle vehicle = GOManager.Create(data.Vehicle.Path(), VehicleContainer).GetComponent<Vehicle>();
             vehicle.Setup(data, location);
-            if (data.Control.isPlayer()) { _camera.Set(vehicle.transform); }
             _vehicles.Add(vehicle);
+            
+            if (data.Control.isPlayer()) { 
+                _camera.Target = vehicle.GetComponent<CameraTarget>();
+                _camera.transform.rotation = vehicle.transform.rotation;
+                _camera.transform.position = 20 * (vehicle.transform.up - vehicle.transform.forward) +  vehicle.transform.position;
+            }
         }
     }
 
