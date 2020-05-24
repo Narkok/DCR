@@ -4,21 +4,25 @@ using UnityEngine;
 
 
 public enum ControlType {
+    /// Прямое управление игроком
     Player,
+    /// Управление ИИ контроллером
     AI,
-
-    /// Удалить после отладки и тестов
-    /// Машина управляется игроком, но не считается машиной игрока
-    FakePlayer
+    /// Внешнее управление через сеть
+    External
 }
 
 
 public static class ControlExtension {
-    public static bool isPlayer(this ControlType control) {
-        return control == ControlType.Player;
+    public static bool isPlayer(this ControlType controlType) {
+        return controlType == ControlType.Player;
     }
 
-    public static bool isAI(this ControlType control) {
-        return control == ControlType.AI;
+    public static bool isAI(this ControlType controlType) {
+        return controlType == ControlType.AI;
+    }
+
+    public static bool isExternal(this ControlType controlType) {
+        return controlType == ControlType.External;
     }
 }

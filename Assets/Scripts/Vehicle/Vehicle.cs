@@ -45,13 +45,13 @@ public class Vehicle: MonoBehaviour {
     
 
     public void Setup(Data data, Arena.Location location) {
-        ControlType = data.Control;
-        _blumbType = data.Blumb;
-        _vehicleType = data.Vehicle;
+        _blumbType = data.blumbType;
+        _vehicleType = data.vehicleType;
         transform.position = location.point;
         transform.up = location.normal;
         hp = _vehicleType.MaxHP();
         _weaponController = GetComponent<WeaponController>();
+        SetupControllType(data.controlType);
         SetupBlumb();
         SetupWheelController();
     }
@@ -70,6 +70,21 @@ public class Vehicle: MonoBehaviour {
         _wheelController = GetComponent<WheelController>();
         _wheelController.ControlType = ControlType;
         _wheelController.maxSpeed = _vehicleType.MaxSpeed();
+    }
+
+
+    private void SetupControllType(ControlType controlType) {
+        ControlType = controlType;
+        
+        if (controlType.isAI()) {
+            VehicleAIController AIController = gameObject.AddComponent(typeof(VehicleAIController)) as VehicleAIController;
+            return;
+        }
+
+        if (controlType.isPlayer()) {
+            VehiclePlayerController PlayerController = gameObject.AddComponent(typeof(VehiclePlayerController)) as VehiclePlayerController;
+            return;
+        }
     }
 
 
@@ -111,8 +126,8 @@ public class Vehicle: MonoBehaviour {
 
     [System.Serializable]
     public struct Data {
-        public ControlType Control;
-        public VehicleType Vehicle;
-        public BlumbType Blumb;
+        public ControlType controlType;
+        public VehicleType vehicleType;
+        public BlumbType blumbType;
     }
 }

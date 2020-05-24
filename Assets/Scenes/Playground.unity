@@ -266,7 +266,7 @@ Light:
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
+    m_Type: 1
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -803,7 +803,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b953a88278cd1424497f5959fe97adca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  keepVertical: 1
 --- !u!114 &1436250125
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -811,7 +810,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1436250120}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 42cd8dcae69d178488f5efa28e7c7e78, type: 3}
   m_Name: 
@@ -904,18 +903,12 @@ MonoBehaviour:
   StuffContainer: {fileID: 0}
   AmmoContainer: {fileID: 0}
   vehiclesInfo:
-  - Control: 1
-    Vehicle: 2
-    Blumb: 4
-  - Control: 2
-    Vehicle: 2
-    Blumb: 3
-  - Control: 2
-    Vehicle: 2
-    Blumb: 1
-  - Control: 0
-    Vehicle: 2
-    Blumb: 1
+  - controlType: 0
+    vehicleType: 2
+    blumbType: 1
+  - controlType: 1
+    vehicleType: 2
+    blumbType: 2
 --- !u!4 &1461094584
 Transform:
   m_ObjectHideFlags: 0

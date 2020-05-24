@@ -1529,7 +1529,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a05c62a4bfc8d2b4e8ac987e6d2b693b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cancelSteerAngle: 0
   wheelModel: {fileID: 4284168019296027769}
   localRotOffset: {x: 0, y: 180, z: 0}
 --- !u!1 &6846464052295204061
@@ -1694,7 +1693,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a05c62a4bfc8d2b4e8ac987e6d2b693b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cancelSteerAngle: 0
   wheelModel: {fileID: 7214224909243363519}
   localRotOffset: {x: 0, y: 180, z: 0}
 --- !u!1 &6847065646085222638
@@ -1772,7 +1770,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a05c62a4bfc8d2b4e8ac987e6d2b693b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cancelSteerAngle: 0
   wheelModel: {fileID: 6335830402378931835}
   localRotOffset: {x: 0, y: 180, z: 0}
 --- !u!1 &6847188282197392730
@@ -11286,7 +11283,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a05c62a4bfc8d2b4e8ac987e6d2b693b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cancelSteerAngle: 0
   wheelModel: {fileID: 7766334172270639818}
   localRotOffset: {x: 0, y: 180, z: 0}
 --- !u!1 &6847543321975528878
@@ -11483,12 +11479,13 @@ MonoBehaviour:
     m_RotationOrder: 4
   diffGearing: 10
   brakeForce: 4500
-  steerAngle: 12
-  steerSpeed: 0.12
+  steerAngle: 10
+  steerSpeed: 0.1
   jumpVel: 3
   driftIntensity: 1
   centerOfMass: {fileID: 6849078511594777680}
   downforce: 8
+  steering: 0
   handbrake: 0
   allowDrift: 1
   speed: 0

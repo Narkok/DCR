@@ -18,7 +18,7 @@ public class WheelController: MonoBehaviour {
         *  Turn input curve: x real input, y value used
         *  My advice (-1, -1) tangent x, (0, 0) tangent 0 and (1, 1) tangent x
         */
-    [SerializeField] AnimationCurve turnInputCurve = AnimationCurve.Linear(-1.0f, -1.0f, 1.0f, 1.0f);
+    [SerializeField] public AnimationCurve turnInputCurve = AnimationCurve.Linear(-1.0f, -1.0f, 1.0f, 1.0f);
 
     [Header("Wheels")]
     [SerializeField] WheelCollider[] driveWheel;
@@ -94,28 +94,29 @@ public class WheelController: MonoBehaviour {
     // Force aplied downwards on the car, proportional to the car speed
     [Range(0.5f, 10f)]
     [SerializeField] float downforce = 1.0f;
-    public float Downforce { get{ return downforce; } set{ downforce = Mathf.Clamp(value, 0, 5); } }     
+    public float Downforce { get { return downforce; } set { downforce = Mathf.Clamp(value, 0, 5); } }     
 
     // When IsPlayer is false you can use this to control the steering
-    float steering;
-    public float Steering { get{ return steering; } set{ steering = Mathf.Clamp(value, -1f, 1f); } } 
+    [Range(-1f, 1f)] 
+    [SerializeField] float steering;
+    public float Steering { get { return steering; } set { steering = Mathf.Clamp(value, -1f, 1f); } } 
 
     // When IsPlayer is false you can use this to control the throttle
     float throttle;
-    public float Throttle { get{ return throttle; } set{ throttle = Mathf.Clamp(value, -1f, 1f); } } 
+    public float Throttle { get { return throttle; } set { throttle = Mathf.Clamp(value, -1f, 1f); } } 
 
     // Like your own car handbrake, if it's true the car will not move
     [SerializeField] bool handbrake;
-    public bool Handbrake { get{ return handbrake; } set{ handbrake = value; } } 
+    public bool Handbrake { get { return handbrake; } set { handbrake = value; } } 
         
     // Use this to disable drifting
     [HideInInspector] public bool allowDrift = true;
     bool drift;
-    public bool Drift { get{ return drift; } set{ drift = value; } }         
+    public bool Drift { get { return drift; } set { drift = value; } }         
 
     // Use this to read the current car speed (you'll need this to make a speedometer)
     [SerializeField] float speed = 0.0f;
-    public float Speed { get{ return speed; } }
+    public float Speed { get { return speed; } }
 
     [Header("Boost")]
     // Disable boost
@@ -136,10 +137,11 @@ public class WheelController: MonoBehaviour {
     public bool boosting = false;
     // Use this to jump when IsPlayer is set to false
     public bool jumping = false;
-        
+
     // Private variables set at the start
     Rigidbody _rb;
     WheelCollider[] wheels;
+
 
     // Init rigidbody, center of mass, wheels and more
     void Start() {
@@ -159,29 +161,15 @@ public class WheelController: MonoBehaviour {
             wheel.ConfigureVehicleSubsteps(5, 12, 16);
         }
     }
-        
-        
+
+
     void FixedUpdate () {
         // Mesure current speed
         speed = transform.InverseTransformDirection(_rb.velocity).z * 3.6f;
 
-        // Get all the inputs!
-        if (!controlType.isAI()) {
-            handbrake = InputManager.isActive(InputManager.Break);
-            // Accelerate & brake
-            throttle = InputManager.Input(InputManager.Throttle) - InputManager.Input(InputManager.Break);
-            // Boost
-            boosting = InputManager.isActive(InputManager.Boost);
-            // Turn
-            steering = turnInputCurve.Evaluate(InputManager.Input(InputManager.Turn)) * steerAngle;
-            // Dirft
-            drift = InputManager.isActive(InputManager.Drift) && (_rb.velocity.sqrMagnitude > 100) || handbrake;
-            // Jump
-            jumping = InputManager.isActive(InputManager.Jump);
-        }
-
         /// Поворот
         foreach (WheelCollider wheel in turnWheel) {
+            float steering = turnInputCurve.Evaluate(this.steering) * steerAngle;
             wheel.steerAngle = Mathf.Lerp(wheel.steerAngle, steering, steerSpeed);
         }
 
@@ -234,9 +222,11 @@ public class WheelController: MonoBehaviour {
         }
     }
 
+
     public void deactivateHandbreak() {
         handbrake = false;
     }
+
 
     public void activateHandbrake() {
         handbrake = true;

@@ -6,6 +6,7 @@ using UnityEngine;
 public class GameCamera: MonoBehaviour {
 
     /// Цель слежения
+    [SerializeField] 
     private CameraTarget _target;
     public CameraTarget Target {
         get {
