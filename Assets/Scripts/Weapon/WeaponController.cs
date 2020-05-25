@@ -83,6 +83,15 @@ public class WeaponController: MonoBehaviour {
     }
 
 
+    // private void Upgrade() {
+    //     if (UnityEngine.Input.GetKeyDown(KeyCode.N)) {
+    //         int currentWeaponNum = 
+    //         _weapons.Select(w => w.weapon.Type.Name()).ToList().FindIndex(SelectedWeapon.Type.Name());
+
+    //     }
+    // }
+
+
     private void SetupMG() {
         WeaponAttachPoint attachPoint = _freeAttachPoints[Random.Range(0, _freeAttachPoints.Count)];
         _freeAttachPoints.Remove(attachPoint);
