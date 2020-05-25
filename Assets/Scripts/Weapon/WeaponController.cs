@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class WeaponController: MonoBehaviour {
 
+    private bool isPlayer = false;
+
     private List<WeaponAttachPoint> _attachPoints;
     private List<WeaponAttachPoint> _freeAttachPoints;
 
@@ -13,7 +15,7 @@ public class WeaponController: MonoBehaviour {
     public Weapon MachineGun { get { return _machineGun.weapon; } }
 
     private AttachedWeapon _selectedWeapon;
-    public Weapon SelectedWeapon { get { return _selectedWeapon.weapon; } }
+    public Weapon SelectedWeapon { get { return _selectedWeapon == null ? null : _selectedWeapon.weapon; } }
 
     private List<AttachedWeapon> _weapons = new List<AttachedWeapon>();
     public List<Weapon> Weapons {  get { return _weapons.Select(w => w.weapon).ToList(); } }
@@ -22,6 +24,7 @@ public class WeaponController: MonoBehaviour {
 
 
     private void Start() {
+        isPlayer = GetComponent<Vehicle>().ControlType.isPlayer();
         _attachPoints = transform.GetComponentsInChildren<WeaponAttachPoint>().ToList();
         _freeAttachPoints = _attachPoints;
         _weapons.Clear();
@@ -39,12 +42,14 @@ public class WeaponController: MonoBehaviour {
     public void ShootFromSelectedWeapon() {
         if (_selectedWeapon != null) {
             _selectedWeapon.weapon.Shoot();
+            UpgradeWeaponInfo();
 
             if (_selectedWeapon.weapon.IsEmpty) {
                 _freeAttachPoints.Add(_selectedWeapon.attachPoint);
                 _weapons.Remove(_selectedWeapon);
                 Destroy(_selectedWeapon.weapon.gameObject);
                 _selectedWeapon = _weapons.Any() ? _weapons.First() : null;
+                UpgradeWeaponInfo();
             }
         }
     }
@@ -52,7 +57,11 @@ public class WeaponController: MonoBehaviour {
 
     public bool SetWeapon(WeaponType weaponType) {
         AttachedWeapon attachedWeapon = Contains(weaponType);
-        if (attachedWeapon != null) return attachedWeapon.weapon.AmmoIncrease();
+        if (attachedWeapon != null) {
+            bool result = attachedWeapon.weapon.AmmoIncrease();
+            UpgradeWeaponInfo();
+            return result;
+        } 
         if (!_freeAttachPoints.Any()) return false;
 
         WeaponAttachPoint attachPoint = _freeAttachPoints[Random.Range(0, _freeAttachPoints.Count)];
@@ -63,7 +72,14 @@ public class WeaponController: MonoBehaviour {
         attachedWeapon = new AttachedWeapon(weapon, attachPoint);
         _weapons.Add(attachedWeapon);
         if (_selectedWeapon == null) { _selectedWeapon = attachedWeapon; }
+        UpgradeWeaponInfo();
         return true;
+    }
+
+
+    private void UpgradeWeaponInfo() {
+        if (!isPlayer) return;
+        GameCanvasManager.Shared.WeaponInfo = SelectedWeapon == null ? "" : (SelectedWeapon.Type.Name() + ": " + SelectedWeapon.AmmoCount);
     }
 
 

@@ -54,6 +54,16 @@ public static class WeaponExtension {
     } 
 
 
+    public static string Name(this WeaponType type) {
+        switch (type) {
+            case WeaponType.MachineGun: { return "MachineGun"; }
+            case WeaponType.Cannon:     { return "Cannon"; }
+            case WeaponType.ProtoGun:   { return "ProtoGun"; }
+            default: return "";
+        }
+    } 
+
+
     public static string AmmoPath(this WeaponType type) {
         switch (type) {
             case WeaponType.MachineGun: { return "Ammunition/MGBullet"; }

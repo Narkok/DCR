@@ -10,19 +10,18 @@ public class GameCanvasManager: MonoBehaviour {
 
     [SerializeField] Slider HPSlider;
     [SerializeField] Slider NitroSlider;
+    [SerializeField] Text WeaponInfoLabel;
 
 
     private void Awake() {
         _shared = this;
     }
 
+    public string WeaponInfo { set { WeaponInfoLabel.text = value; } }
 
-    public void SetHP(float value) {
-        HPSlider.value = value;
-    }
+    public float HP { set { HPSlider.value = value; } }
+
+    public float Nitro { set { NitroSlider.value = value; } }
 
 
-    public void SetNitro(float value) {
-        NitroSlider.value = value;
-    }
 }

@@ -205,7 +205,7 @@ public class WheelController: MonoBehaviour {
         if (boosting && allowBoost && boost > 0) {
             if (Mathf.Abs(speed) < maxSpeed + boostSpeedIncrease) _rb.AddForce(transform.forward * boostForce);
             boost = Mathf.Max(0, boost - Time.fixedDeltaTime);
-            if (controlType.isPlayer()) GameCanvasManager.Shared.SetNitro(boost / VehicleExtention.MaxBoost);
+            if (controlType.isPlayer()) GameCanvasManager.Shared.Nitro = boost / VehicleExtention.MaxBoost;
         }
 
         /// Дрифт

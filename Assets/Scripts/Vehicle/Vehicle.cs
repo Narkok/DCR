@@ -28,7 +28,7 @@ public class Vehicle: MonoBehaviour {
         get { return hp; }
         set {
             hp = value;
-            if (ControlType.isPlayer()) GameCanvasManager.Shared.SetHP(hp / (float)MaxHP);
+            if (ControlType.isPlayer()) GameCanvasManager.Shared.HP = hp / (float)MaxHP;
         } 
     }
     public int MaxHP { get { return _vehicleType.MaxHP(); } }
@@ -39,7 +39,7 @@ public class Vehicle: MonoBehaviour {
         get { return _wheelController.Boost; } 
         set { 
             _wheelController.Boost = value; 
-            GameCanvasManager.Shared.SetNitro(value / VehicleExtention.MaxBoost);
+            GameCanvasManager.Shared.Nitro = value / VehicleExtention.MaxBoost;
         }
     }
     
