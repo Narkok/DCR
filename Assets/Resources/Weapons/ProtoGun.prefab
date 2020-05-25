@@ -57,7 +57,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e229b82ac589143fbb739abbfe6bdd38, type: 2}
+  - {fileID: 2100000, guid: 5e866f23ea9ef411c87a923eb5c7e4fe, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 7736434220746506790}
   - component: {fileID: 6494385594619042552}
   m_Layer: 0
-  m_Name: Cannon
+  m_Name: ProtoGun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -224,7 +224,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e229b82ac589143fbb739abbfe6bdd38, type: 2}
+  - {fileID: 2100000, guid: 5e866f23ea9ef411c87a923eb5c7e4fe, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
