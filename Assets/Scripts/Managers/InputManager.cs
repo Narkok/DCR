@@ -26,6 +26,7 @@ public static class InputManager {
         return UnityEngine.Input.GetAxis(input) > 0;
     }
 
+
     public static bool Debug(KeyCode code) {
         return UnityEngine.Input.GetKeyDown(code);
     }

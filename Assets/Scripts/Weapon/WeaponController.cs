@@ -10,8 +10,13 @@ public class WeaponController: MonoBehaviour {
     private List<WeaponAttachPoint> _freeAttachPoints;
 
     private AttachedWeapon _machineGun;
+    public Weapon MachineGun { get { return _machineGun.weapon; } }
+
     private AttachedWeapon _selectedWeapon;
+    public Weapon SelectedWeapon { get { return _selectedWeapon.weapon; } }
+
     private List<AttachedWeapon> _weapons = new List<AttachedWeapon>();
+    public List<Weapon> Weapons {  get { return _weapons.Select(w => w.weapon).ToList(); } }
 
     private int _instanceID;
 
@@ -26,20 +31,20 @@ public class WeaponController: MonoBehaviour {
     }
 
 
-    private void Update() {
-        if (InputManager.isActive(InputManager.LClick))
-            _machineGun.weapon.Shoot();
+    public void ShootFromMachineGun() {
+        MachineGun.Shoot();
+    }
 
-        if (InputManager.isActive(InputManager.RClick)) {
-            if (_selectedWeapon != null) {
-                _selectedWeapon.weapon.Shoot();
 
-                if (_selectedWeapon.weapon.IsEmpty) {
-                    _freeAttachPoints.Add(_selectedWeapon.attachPoint);
-                    _weapons.Remove(_selectedWeapon);
-                    Destroy(_selectedWeapon.weapon.gameObject);
-                    _selectedWeapon = _weapons.Any() ? _weapons.First() : null;
-                }
+    public void ShootFromSelectedWeapon() {
+        if (_selectedWeapon != null) {
+            _selectedWeapon.weapon.Shoot();
+
+            if (_selectedWeapon.weapon.IsEmpty) {
+                _freeAttachPoints.Add(_selectedWeapon.attachPoint);
+                _weapons.Remove(_selectedWeapon);
+                Destroy(_selectedWeapon.weapon.gameObject);
+                _selectedWeapon = _weapons.Any() ? _weapons.First() : null;
             }
         }
     }

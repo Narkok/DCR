@@ -5,11 +5,15 @@ using UnityEngine;
 public class VehicleAIController: MonoBehaviour {
 
     private WheelController _wheelController;
+    private WeaponController _weaponController;
     
 
     void Awake() {
         _wheelController = GetComponent<WheelController>();
+        _weaponController = GetComponent<WeaponController>();
         StartCoroutine(Turn());
+        StartCoroutine(MachineGunShot());
+        StartCoroutine(SelectedWeaponShot());
     }
 
 
@@ -26,5 +30,19 @@ public class VehicleAIController: MonoBehaviour {
         yield return new WaitForSeconds(Random.Range(1, 4));
         steering = Random.Range(-1f, 1f);
         StartCoroutine(Turn());
+    }
+
+
+    private IEnumerator MachineGunShot() {
+        yield return new WaitForSeconds(Random.Range(1, 4));
+        _weaponController.ShootFromMachineGun();
+        StartCoroutine(MachineGunShot());
+    }
+
+
+    private IEnumerator SelectedWeaponShot() {
+        yield return new WaitForSeconds(Random.Range(1, 4));
+        _weaponController.ShootFromSelectedWeapon();
+        StartCoroutine(SelectedWeaponShot());
     }
 }

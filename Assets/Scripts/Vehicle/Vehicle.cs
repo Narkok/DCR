@@ -77,12 +77,12 @@ public class Vehicle: MonoBehaviour {
         ControlType = controlType;
         
         if (controlType.isAI()) {
-            VehicleAIController AIController = gameObject.AddComponent(typeof(VehicleAIController)) as VehicleAIController;
+            gameObject.AddComponent(typeof(VehicleAIController));
             return;
         }
 
         if (controlType.isPlayer()) {
-            VehiclePlayerController PlayerController = gameObject.AddComponent(typeof(VehiclePlayerController)) as VehiclePlayerController;
+            gameObject.AddComponent(typeof(VehiclePlayerController));
             return;
         }
     }

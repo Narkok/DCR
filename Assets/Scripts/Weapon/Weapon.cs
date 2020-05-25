@@ -11,6 +11,7 @@ public class Weapon: MonoBehaviour {
     public WeaponType Type { get { return _type; } }
 
     [SerializeField] private int _ammoCount = 0;
+    public int AmmoCount { get { return _ammoCount; } }
     public bool IsEmpty { get { return _ammoCount == 0; } }
 
     private int _parentID;

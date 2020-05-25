@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 
 public class SceneManager: MonoBehaviour {
@@ -22,10 +23,18 @@ public class SceneManager: MonoBehaviour {
 
     private GameCamera _camera;
 
-    [SerializeField] Vehicle.Data[] vehiclesInfo;
-    private List<Vehicle> _vehicles = new List<Vehicle>();
+    [SerializeField] List<Vehicle.Data> vehiclesInfo;
+
     private List<Stuff> _stuff = new List<Stuff>();
+    public List<Stuff> Stuff { get { return _stuff; } }
+
+    private List<Vehicle> _vehicles = new List<Vehicle>();
+    public List<Vehicle> Vehicles { get { return _vehicles; } }
+
     private List<Equipment> _equipment = new List<Equipment>();
+    public List<Equipment> Equipment { get { return _equipment; } }
+
+    private int _followingVehicleNum;
 
 
     private void Awake() {
@@ -49,7 +58,7 @@ public class SceneManager: MonoBehaviour {
     /// Генерация машин на арене
     private void GenerateVehicles() {
         _vehicles.Clear();
-        for (int i = 0; i < vehiclesInfo.Length; i++) {
+        for (int i = 0; i < vehiclesInfo.Count; i++) {
             Vehicle.Data data = vehiclesInfo[i];
             Arena.Location location = _arena.RandomLocation;
             Vehicle vehicle = GOManager.Create(data.vehicleType.Path(), VehicleContainer).GetComponent<Vehicle>();
@@ -57,6 +66,7 @@ public class SceneManager: MonoBehaviour {
             _vehicles.Add(vehicle);
             
             if (data.controlType.isPlayer()) { 
+                _followingVehicleNum = i;
                 _camera.Target = vehicle.GetComponent<CameraTarget>();
                 _camera.transform.rotation = vehicle.transform.rotation;
                 _camera.transform.position = 20 * (vehicle.transform.up - vehicle.transform.forward) +  vehicle.transform.position;
@@ -109,5 +119,13 @@ public class SceneManager: MonoBehaviour {
     public void Destroy(Vehicle vehicle) {
         _vehicles.Remove(vehicle);
         Destroy(vehicle.gameObject);
+    }
+
+
+    private void Update() {
+        if (Input.GetKeyDown(KeyCode.L)) {
+            _followingVehicleNum = (_followingVehicleNum + 1) % Vehicles.Count;
+            _camera.Target = Vehicles[_followingVehicleNum].GetComponent<CameraTarget>();
+        }
     }
 }

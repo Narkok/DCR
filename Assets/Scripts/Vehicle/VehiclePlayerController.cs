@@ -5,24 +5,36 @@ using UnityEngine;
 public class VehiclePlayerController: MonoBehaviour {
 
     private WheelController _wheelController;
+    private WeaponController _weaponController;
     
     
     void Awake() {
         _wheelController = GetComponent<WheelController>();
+        _weaponController = GetComponent<WeaponController>();
     }
 
 
     void Update() {
+        /// Handbrake
         _wheelController.Handbrake = InputManager.isActive(InputManager.Break);
-            // Accelerate & brake
+
+        /// Accelerate & brake
         _wheelController.Throttle = InputManager.Input(InputManager.Throttle) - InputManager.Input(InputManager.Break);
-            // Boost
+
+        /// Boost
         _wheelController.boosting = InputManager.isActive(InputManager.Boost);
-            // Turn
+
+        /// Turn
         _wheelController.Steering = InputManager.Input(InputManager.Turn);
-            // Dirft
+
+        /// Dirft
         _wheelController.Drift = InputManager.isActive(InputManager.Drift) && (_wheelController.Speed > 20) || _wheelController.Handbrake;
-            // Jump
+
+        /// Jump
         _wheelController.jumping = InputManager.isActive(InputManager.Jump);
+
+        /// Shoot
+        if (InputManager.isActive(InputManager.LClick)) _weaponController.ShootFromMachineGun();
+        if (InputManager.isActive(InputManager.RClick)) _weaponController.ShootFromSelectedWeapon();
     }
 }
