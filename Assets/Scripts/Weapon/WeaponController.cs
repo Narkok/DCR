@@ -83,14 +83,19 @@ public class WeaponController: MonoBehaviour {
     }
 
 
-    // private void Upgrade() {
-    //     if (UnityEngine.Input.GetKeyDown(KeyCode.N)) {
-    //         int currentWeaponNum = 
-    //         _weapons.Select(w => w.weapon.Type.Name()).ToList().FindIndex(SelectedWeapon.Type.Name());
-
-    //     }
-    // }
-
+    public void NextWeapon() {
+        int currentWeaponNum = -1;
+        for (int i = 0; i < _weapons.Count; i++) {
+            if (_selectedWeapon.weapon.Type == _weapons[i].weapon.Type) {
+                currentWeaponNum = i;
+                break;
+            }
+        }
+        if (currentWeaponNum == -1) return;
+        int nextWeaponNum = (currentWeaponNum + 1) % _weapons.Count;
+        _selectedWeapon = _weapons[nextWeaponNum];
+        UpgradeWeaponInfo();
+    }
 
     private void SetupMG() {
         WeaponAttachPoint attachPoint = _freeAttachPoints[Random.Range(0, _freeAttachPoints.Count)];

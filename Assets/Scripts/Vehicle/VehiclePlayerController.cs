@@ -36,5 +36,6 @@ public class VehiclePlayerController: MonoBehaviour {
         /// Shoot
         if (InputManager.isActive(InputManager.LClick)) _weaponController.ShootFromMachineGun();
         if (InputManager.isActive(InputManager.RClick)) _weaponController.ShootFromSelectedWeapon();
+        if (UnityEngine.Input.GetKeyDown(KeyCode.N)) _weaponController.NextWeapon();
     }
 }
