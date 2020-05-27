@@ -429,7 +429,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.8867924, g: 0, b: 0.04472374, a: 1}
+  m_Color: {r: 0.9, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -982,8 +982,62 @@ MonoBehaviour:
   vehiclesInfo:
   - controlType: 0
     vehicleType: 2
+    blumbType: 4
+  - controlType: 2
+    vehicleType: 2
     blumbType: 2
-  - controlType: 1
+  - controlType: 2
+    vehicleType: 2
+    blumbType: 2
+  - controlType: 2
+    vehicleType: 2
+    blumbType: 2
+  - controlType: 2
+    vehicleType: 2
+    blumbType: 2
+  - controlType: 2
+    vehicleType: 2
+    blumbType: 2
+  - controlType: 2
+    vehicleType: 2
+    blumbType: 2
+  - controlType: 2
+    vehicleType: 2
+    blumbType: 2
+  - controlType: 2
+    vehicleType: 2
+    blumbType: 2
+  - controlType: 2
+    vehicleType: 2
+    blumbType: 2
+  - controlType: 2
+    vehicleType: 2
+    blumbType: 2
+  - controlType: 2
+    vehicleType: 2
+    blumbType: 2
+  - controlType: 2
+    vehicleType: 2
+    blumbType: 2
+  - controlType: 2
+    vehicleType: 2
+    blumbType: 2
+  - controlType: 2
+    vehicleType: 2
+    blumbType: 2
+  - controlType: 2
+    vehicleType: 2
+    blumbType: 2
+  - controlType: 2
+    vehicleType: 2
+    blumbType: 2
+  - controlType: 2
+    vehicleType: 2
+    blumbType: 2
+  - controlType: 2
+    vehicleType: 2
+    blumbType: 2
+  - controlType: 2
     vehicleType: 2
     blumbType: 2
 --- !u!4 &1461094584
