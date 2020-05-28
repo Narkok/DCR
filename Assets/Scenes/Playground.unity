@@ -983,63 +983,12 @@ MonoBehaviour:
   - controlType: 0
     vehicleType: 2
     blumbType: 4
-  - controlType: 2
+  - controlType: 1
     vehicleType: 2
-    blumbType: 2
-  - controlType: 2
+    blumbType: 1
+  - controlType: 1
     vehicleType: 2
-    blumbType: 2
-  - controlType: 2
-    vehicleType: 2
-    blumbType: 2
-  - controlType: 2
-    vehicleType: 2
-    blumbType: 2
-  - controlType: 2
-    vehicleType: 2
-    blumbType: 2
-  - controlType: 2
-    vehicleType: 2
-    blumbType: 2
-  - controlType: 2
-    vehicleType: 2
-    blumbType: 2
-  - controlType: 2
-    vehicleType: 2
-    blumbType: 2
-  - controlType: 2
-    vehicleType: 2
-    blumbType: 2
-  - controlType: 2
-    vehicleType: 2
-    blumbType: 2
-  - controlType: 2
-    vehicleType: 2
-    blumbType: 2
-  - controlType: 2
-    vehicleType: 2
-    blumbType: 2
-  - controlType: 2
-    vehicleType: 2
-    blumbType: 2
-  - controlType: 2
-    vehicleType: 2
-    blumbType: 2
-  - controlType: 2
-    vehicleType: 2
-    blumbType: 2
-  - controlType: 2
-    vehicleType: 2
-    blumbType: 2
-  - controlType: 2
-    vehicleType: 2
-    blumbType: 2
-  - controlType: 2
-    vehicleType: 2
-    blumbType: 2
-  - controlType: 2
-    vehicleType: 2
-    blumbType: 2
+    blumbType: 3
 --- !u!4 &1461094584
 Transform:
   m_ObjectHideFlags: 0
