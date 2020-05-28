@@ -983,12 +983,15 @@ MonoBehaviour:
   - controlType: 0
     vehicleType: 2
     blumbType: 4
+    nickname: Cheburek
   - controlType: 1
     vehicleType: 2
     blumbType: 1
+    nickname: LOL
   - controlType: 1
     vehicleType: 2
     blumbType: 3
+    nickname: KEK
 --- !u!4 &1461094584
 Transform:
   m_ObjectHideFlags: 0
