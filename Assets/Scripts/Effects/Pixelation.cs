@@ -39,11 +39,13 @@ public class Pixelation: MonoBehaviour {
 
 
     private void OnPreRender() {
+        if (cameraComponent == null) return;
         cameraComponent.targetTexture = texture;
     }
 
 
     private void OnPostRender() {
+        if (cameraComponent == null) return;
         cameraComponent.targetTexture = null;
     }
 

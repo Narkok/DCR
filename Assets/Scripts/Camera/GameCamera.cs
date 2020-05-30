@@ -34,7 +34,7 @@ public class GameCamera: MonoBehaviour {
 
         _smoothTime = Mathf.Clamp(_smoothTime + _deltaSmooth, 0, Target.SmoothTime);
 
-        float smooth = _smoothTime * Time.deltaTime;
+        float smooth = _smoothTime * Time.fixedDeltaTime;
         _transform.position = Vector3.Slerp(_transform.position, _target.Target.position, smooth);
         _transform.rotation = Quaternion.Slerp(_transform.rotation,  _target.Target.rotation, smooth);
     }
