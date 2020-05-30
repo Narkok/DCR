@@ -17,11 +17,10 @@ public class GameCanvasManager: MonoBehaviour {
         _shared = this;
     }
 
-    public string WeaponInfo { set { WeaponInfoLabel.text = value; } }
-
     public float HP { set { HPSlider.value = value; } }
 
     public float Nitro { set { NitroSlider.value = value; } }
 
+    public string WeaponInfo { set { WeaponInfoLabel.text = value; } }
 
 }

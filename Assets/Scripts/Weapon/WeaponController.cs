@@ -42,14 +42,12 @@ public class WeaponController: MonoBehaviour {
     public void ShootFromSelectedWeapon() {
         if (_selectedWeapon != null) {
             _selectedWeapon.weapon.Shoot();
-            UpgradeWeaponInfo();
 
             if (_selectedWeapon.weapon.IsEmpty) {
                 _freeAttachPoints.Add(_selectedWeapon.attachPoint);
                 _weapons.Remove(_selectedWeapon);
                 Destroy(_selectedWeapon.weapon.gameObject);
                 _selectedWeapon = _weapons.Any() ? _weapons.First() : null;
-                UpgradeWeaponInfo();
             }
         }
     }
@@ -57,11 +55,7 @@ public class WeaponController: MonoBehaviour {
 
     public bool SetWeapon(WeaponType weaponType) {
         AttachedWeapon attachedWeapon = Contains(weaponType);
-        if (attachedWeapon != null) {
-            bool result = attachedWeapon.weapon.AmmoIncrease();
-            UpgradeWeaponInfo();
-            return result;
-        } 
+        if (attachedWeapon != null) return attachedWeapon.weapon.AmmoIncrease(); 
         if (!_freeAttachPoints.Any()) return false;
 
         WeaponAttachPoint attachPoint = _freeAttachPoints[Random.Range(0, _freeAttachPoints.Count)];
@@ -71,15 +65,8 @@ public class WeaponController: MonoBehaviour {
         weapon.Setup(weaponType, _instanceID);
         attachedWeapon = new AttachedWeapon(weapon, attachPoint);
         _weapons.Add(attachedWeapon);
-        if (_selectedWeapon == null) { _selectedWeapon = attachedWeapon; }
-        UpgradeWeaponInfo();
+        if (_selectedWeapon == null) _selectedWeapon = attachedWeapon;
         return true;
-    }
-
-
-    private void UpgradeWeaponInfo() {
-        if (!isPlayer) return;
-        GameCanvasManager.Shared.WeaponInfo = SelectedWeapon == null ? "" : (SelectedWeapon.Type.Name() + ": " + SelectedWeapon.AmmoCount);
     }
 
 
@@ -94,7 +81,6 @@ public class WeaponController: MonoBehaviour {
         if (currentWeaponNum == -1) return;
         int nextWeaponNum = (currentWeaponNum + 1) % _weapons.Count;
         _selectedWeapon = _weapons[nextWeaponNum];
-        UpgradeWeaponInfo();
     }
 
     private void SetupMG() {
