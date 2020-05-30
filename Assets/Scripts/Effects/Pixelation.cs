@@ -13,10 +13,7 @@ public class Pixelation: MonoBehaviour {
     private RenderTexture texture;
 
 
-    private void Awake() {
-        QualitySettings.vSyncCount = 0;
-        Application.targetFrameRate = 40;
-
+    private void Start() {
         cameraComponent = GetComponent<Camera>();
         CreateTexture();
     }

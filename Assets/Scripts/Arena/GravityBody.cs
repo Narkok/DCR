@@ -10,7 +10,7 @@ public class GravityBody: MonoBehaviour {
     private Rigidbody _rigidbody;
 
 
-    void Awake() {
+    void Start() {
         _transform = transform;
         _rigidbody = GetComponent<Rigidbody>();
         _rigidbody.useGravity = false;
