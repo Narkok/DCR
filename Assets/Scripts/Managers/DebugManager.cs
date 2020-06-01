@@ -78,18 +78,18 @@ public class DebugManager: MonoBehaviour {
         }
 
         foreach (Line line in DebugManager.lines) {
+            Gizmos.color = lineColor;
+            Gizmos.DrawLine(line.start, line.end);
             Gizmos.color = linePointsColor;
             Gizmos.DrawSphere(line.start, pointRadius);
             Gizmos.DrawSphere(line.end, pointRadius);
-            Gizmos.color = lineColor;
-            Gizmos.DrawLine(line.start, line.end);
         }
 
         foreach (Direction direction in DebugManager.directions) {
-            Gizmos.color = directionStartColor;
-            Gizmos.DrawSphere(direction.start, pointRadius);
             Gizmos.color = directionColor;
             Gizmos.DrawLine(direction.start, direction.start + direction.dir);
+            Gizmos.color = directionStartColor;
+            Gizmos.DrawSphere(direction.start, pointRadius);
         }
 
     }
