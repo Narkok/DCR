@@ -53,6 +53,11 @@ public class VehicleAIController: MonoBehaviour {
         
         Vector3 currentPos = _transform.position;
         
+        if (SceneManager.Shared.Equipment.Count == 0) {
+            currentPurpose = Purpose.Inaction;
+            return;
+        }
+
         Equipment closestEquipment = SceneManager.Shared.Equipment[0];
         float minDistance = Vector3.Distance(currentPos, closestEquipment.transform.position);
 
@@ -72,9 +77,9 @@ public class VehicleAIController: MonoBehaviour {
 
     /// Тут контролируется процесс выполнения вычисленной цели
     private void Update() {
-        _wheelController.Throttle = 0.7f;
         switch (currentPurpose) {
             case Purpose.Inaction:
+                inaction();
                 break;
 
             case Purpose.Wehicle:
@@ -84,11 +89,13 @@ public class VehicleAIController: MonoBehaviour {
 
             case Purpose.ReachPoint:
                 reachPoint(targetPosition);
+                _weaponController.ShootFromSelectedWeapon();
                 break;
         }
     }
 
 
+    /// Достижение позиции
     private void reachPoint(Vector3 targetPosition) {
         /// Вытащил, чтобы меньше обращений было
         Vector3 up = _transform.up;
@@ -104,12 +111,22 @@ public class VehicleAIController: MonoBehaviour {
         Vector3 projectDirection = (targetDirection - up * height).normalized;
 
         /// Угол поворота
-        float angle = Vector3.Angle(forward, projectDirection);
+        float normalizedAngle = Vector3.Angle(forward, projectDirection) / 180;
         float dir = Vector3.Angle(right, projectDirection) < 90 ? 1 : -1;
-        float result = angle * dir / 180;
+        float result = normalizedAngle * dir;
         debugValue = result;
 
-        _wheelController.Steering = result * 80;
+        _wheelController.Throttle = 0.7f;
+        _wheelController.Steering = result * 8;
+        _wheelController.boosting = Mathf.Abs(normalizedAngle) < 0.05f; 
+    }
+
+
+    /// Бездействие
+    private void inaction() {
+        _wheelController.Steering = 0;
+        _wheelController.boosting = false;
+        _wheelController.Throttle = 0;
     }
 
 
