@@ -5,8 +5,8 @@
 [AddComponentMenu("Image Effects/Color Adjustments/Pixelation")]
 public class Pixelation: MonoBehaviour {
 
-    [Range(1, 920)] 
-    public int BlocksCount = 800;
+    [Range(200, 800)] 
+    public int BlocksCount = 700;
 
 
     private Camera cameraComponent;
