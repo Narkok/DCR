@@ -6,6 +6,8 @@ using System.Linq;
 
 public class SceneManager: MonoBehaviour {
 
+    [SerializeField] private GameCanvasManager canvas;
+
     [SerializeField] public ArenaType arenaType;
 
     private static SceneManager _shared;
@@ -52,6 +54,8 @@ public class SceneManager: MonoBehaviour {
         GenerateEquipment();
         GenerateVehicles();
         GenerateStuff();
+
+        canvas.Setup();
     }
 
     
@@ -59,13 +63,13 @@ public class SceneManager: MonoBehaviour {
     private void GenerateVehicles() {
         _vehicles.Clear();
         for (int i = 0; i < vehiclesInfo.Count; i++) {
-            Vehicle.Data data = vehiclesInfo[i];
+            Vehicle.Data vehicleData = vehiclesInfo[i];
             Arena.Location location = _arena.RandomLocation;
-            Vehicle vehicle = GOManager.Create(data.vehicleType.Path(), VehicleContainer).GetComponent<Vehicle>();
-            vehicle.Setup(data, location);
+            Vehicle vehicle = GOManager.Create(vehicleData.vehicleType.Path(), VehicleContainer).GetComponent<Vehicle>();
+            vehicle.Setup(vehicleData, location, i);
             _vehicles.Add(vehicle);
             
-            if (data.controlType.isPlayer()) { 
+            if (vehicleData.controlType.isPlayer()) { 
                 _followingVehicleNum = i;
                 _camera.Target = vehicle.GetComponent<CameraTarget>();
                 _camera.transform.rotation = vehicle.transform.rotation;

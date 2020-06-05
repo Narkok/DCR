@@ -26,6 +26,8 @@ public class Vehicle: MonoBehaviour {
     public VehicleType VehicleType { get { return _vehicleType; } }
     [SerializeField] private VehicleType _vehicleType;
 
+    public int LocalID { get { return _localID; } }
+    [SerializeField] private int _localID;
 
     public int HP { 
         get { return hp; }
@@ -41,10 +43,11 @@ public class Vehicle: MonoBehaviour {
     }
     
 
-    public void Setup(Data data, Arena.Location location) {
+    public void Setup(Data data, Arena.Location location, int localID) {
         _blumbType = data.blumbType;
         _vehicleType = data.vehicleType;
         _nickname = data.nickname;
+        _localID = localID;
         transform.position = location.point;
         transform.up = location.normal;
         hp = _vehicleType.MaxHP();

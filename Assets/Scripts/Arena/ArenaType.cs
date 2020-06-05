@@ -35,4 +35,13 @@ public static class ArenaExtension {
             default: return 0;
         }
     }
+
+
+    public static string MinimapPath(this ArenaType type) {
+        switch (type) {
+            case ArenaType.Sphere: { return "Minimaps/SphereMinimap"; }
+            case ArenaType.Torus: { return "Minimaps/TorusMinimap"; }
+            default: return "";
+        }
+    }
 }
