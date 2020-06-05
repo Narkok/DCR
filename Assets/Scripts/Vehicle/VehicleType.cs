@@ -41,4 +41,14 @@ public static class VehicleExtention {
             default: return 0;
         }
     }
+
+
+    public static Color PointerColor(this VehicleType type) {
+        switch (type) {
+            case VehicleType.Delorian: { return Color.red; }
+            case VehicleType.Shelby:   { return Color.magenta; }
+            case VehicleType.Monster:  { return Color.blue; }
+            default: return Color.black;
+        }
+    }
 }

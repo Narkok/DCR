@@ -7,6 +7,14 @@ public class Arena: MonoBehaviour {
     public static readonly string Name = "Arena";
     public static LayerMask Mask;
 
+    [SerializeField] private Transform center;
+    public Transform Center { get { return center; } }
+
+    [SerializeField] private Transform backBorder;
+    public Transform BackBorder { get { return backBorder; } }
+
+    public float Size { get { return Vector3.Distance(center.position, backBorder.position) * 2; } }
+
     [SerializeField] private GravityProcessor gravityProcessor;
     public GravityProcessor GravityProcessor { get { return gravityProcessor; } }
 

@@ -13,16 +13,23 @@ public class AppearanceController: MonoBehaviour {
 
     private WeaponController _weaponController;
     private WheelController _wheelController;
+    private VehiclePointer _pointer;
     private BackLights _backLights;
+    private Transform _transform;
     private Vehicle _vehicle;
     private bool isPlayer;
 
 
-    void Start() {
+    void Awake() {
         _vehicle = GetComponent<Vehicle>();
         _weaponController = GetComponent<WeaponController>();
         _wheelController = GetComponent<WheelController>();
         _backLights = GetComponentInChildren<BackLights>();
+        _transform = transform;
+    }
+
+
+    void Start() {
         isPlayer = _vehicle.ControlType.isPlayer();
         _info.gameObject.SetActive(!isPlayer);
     }
@@ -51,7 +58,15 @@ public class AppearanceController: MonoBehaviour {
             }
         }
 
+        _pointer.UpdatePosition(_transform);
+
         _backLights.isEnabled = backLightsEnabled();
+    }
+
+
+    public void Set(VehiclePointer pointer) {
+        _pointer = pointer;
+        _pointer.Set(_vehicle.VehicleType);
     }
 
 
