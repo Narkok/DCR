@@ -965,7 +965,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c27fada6986c4fd7b2234ab04fa8629, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointRadius: 0.1
+  pointRadius: 0.5
   pointColor: {r: 1, g: 1, b: 1, a: 1}
   lineColor: {r: 1, g: 0, b: 0, a: 1}
   linePointsColor: {r: 1, g: 0, b: 1, a: 1}

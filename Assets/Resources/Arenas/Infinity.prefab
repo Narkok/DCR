@@ -75,7 +75,7 @@ GameObject:
   - component: {fileID: 3979500092842015512}
   - component: {fileID: 114505331291493214}
   m_Layer: 9
-  m_Name: Eternal
+  m_Name: Infinity
   m_TagString: Arena
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -417,6 +417,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gravity: 16
+  filterRadius: 2
 --- !u!64 &672570616314395441
 MeshCollider:
   m_ObjectHideFlags: 0
