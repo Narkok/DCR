@@ -71,7 +71,7 @@ public class AppearanceController: MonoBehaviour {
 
 
     private void OnDestroy() {
-        Destroy(_pointer.gameObject);
+        if (_pointer != null) Destroy(_pointer.gameObject);
     }
 
 
