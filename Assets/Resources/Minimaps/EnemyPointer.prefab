@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 683762068792552408}
   - component: {fileID: 7908074806768200228}
   m_Layer: 5
-  m_Name: VehiclePointer
+  m_Name: EnemyVehiclePointer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 159233d0723b04cd080e28f033293618, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c22445a19dc50433387f584788443098, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -87,3 +87,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1a0d9d1df2384a9bb79c37b69a95434, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _rectTransform: {fileID: 0}
+  _image: {fileID: 0}
+  minimapScale: 0

@@ -58,15 +58,20 @@ public class AppearanceController: MonoBehaviour {
             }
         }
 
-        _pointer.UpdatePosition(_transform);
+        if (_pointer != null) _pointer.UpdatePosition(_transform);
 
-        _backLights.isEnabled = backLightsEnabled();
+        if (_backLights != null) _backLights.isEnabled = backLightsEnabled();
     }
 
 
     public void Set(VehiclePointer pointer) {
         _pointer = pointer;
         _pointer.Set(_vehicle.VehicleType);
+    }
+
+
+    private void OnDestroy() {
+        Destroy(_pointer.gameObject);
     }
 
 

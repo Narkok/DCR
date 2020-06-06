@@ -14,10 +14,8 @@ public class MinimapManager: MonoBehaviour {
         minimapImage.sprite = Resources.Load<Sprite>(SceneManager.Shared.arenaType.MinimapPath());
 
         foreach (Vehicle vehicle in SceneManager.Shared.Vehicles) {
-            VehiclePointer pointer = GOManager
-                .Create("Minimaps/VehiclePointer", this.transform)
-                .GetComponent<VehiclePointer>();
-            
+            string path = vehicle.ControlType.isPlayer() ? "Minimaps/PlayerPointer" : "Minimaps/EnemyPointer";
+            VehiclePointer pointer = GOManager.Create(path, this.transform).GetComponent<VehiclePointer>();
             pointer.minimapScale = minimapImage.rectTransform.rect.height / SceneManager.Shared.Arena.Size;
             vehicle.GetComponent<AppearanceController>().Set(pointer);
         }
