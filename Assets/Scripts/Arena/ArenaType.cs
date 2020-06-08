@@ -49,4 +49,17 @@ public static class ArenaExtension {
             default: return "";
         }
     }
+
+
+    public static Color MinimapColor(this ArenaType type) {
+        Color black = new Color(0, 0, 0, 0.3f);
+        Color light = new Color(1, 1, 1, 0.03f);
+
+        switch (type) {
+            case ArenaType.Sphere:   { return black; }
+            case ArenaType.Torus:    { return black; }
+            case ArenaType.Infinity: { return light; }
+            default: return black;
+        }
+    }
 }

@@ -12,6 +12,7 @@ public class MinimapManager: MonoBehaviour {
     public void Setup() {
         minimapImage = GetComponent<Image>();
         minimapImage.sprite = Resources.Load<Sprite>(SceneManager.Shared.arenaType.MinimapPath());
+        minimapImage.color = SceneManager.Shared.arenaType.MinimapColor();
 
         foreach (Vehicle vehicle in SceneManager.Shared.Vehicles) {
             string path = vehicle.ControlType.isPlayer() ? "Minimaps/PlayerPointer" : "Minimaps/EnemyPointer";

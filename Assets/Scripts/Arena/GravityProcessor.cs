@@ -32,10 +32,6 @@ public class GravityProcessor: MonoBehaviour {
                 _vertices.Add(point);
             }
         }
-
-        foreach (Vector3 point in _vertices) { 
-            DebugManager.AddPoint(point);
-        }
     }
 
 
