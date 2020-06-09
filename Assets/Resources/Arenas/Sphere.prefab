@@ -324,6 +324,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gravity: 9.8
+  filterRadius: 2
 --- !u!64 &672570616314395441
 MeshCollider:
   m_ObjectHideFlags: 0

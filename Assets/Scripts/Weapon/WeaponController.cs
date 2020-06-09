@@ -48,6 +48,10 @@ public class WeaponController: MonoBehaviour {
                 _weapons.Remove(_selectedWeapon);
                 Destroy(_selectedWeapon.weapon.gameObject);
                 _selectedWeapon = _weapons.Any() ? _weapons.First() : null;
+                if (_selectedWeapon != null) {
+                    _selectedWeapon.weapon.isAvalaible = false;
+                    StartCoroutine(_selectedWeapon.weapon.CoolDown());
+                }
             }
         }
     }

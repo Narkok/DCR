@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Weapon: MonoBehaviour {
 
-    private bool isAvalaible = false;
+    public bool isAvalaible = false;
 
     private WeaponType _type;
     public WeaponType Type { get { return _type; } }
@@ -44,7 +44,7 @@ public class Weapon: MonoBehaviour {
     }
 
 
-    private IEnumerator CoolDown() {
+    public IEnumerator CoolDown() {
         yield return new WaitForSeconds(_type.CoolDownTime());
         isAvalaible = true;
     }
