@@ -1015,7 +1015,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 1701660904}
-  arenaType: 2
+  arenaType: 1
   ExplosionContainer: {fileID: 0}
   EquipmentContainer: {fileID: 0}
   VehicleContainer: {fileID: 0}
