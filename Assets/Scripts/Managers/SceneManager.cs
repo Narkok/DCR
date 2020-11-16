@@ -127,9 +127,9 @@ public class SceneManager: MonoBehaviour {
 
 
     private void Update() {
-        if (Input.GetKeyDown(KeyCode.L)) {
-            _followingVehicleNum = (_followingVehicleNum + 1) % Vehicles.Count;
-            _camera.Target = Vehicles[_followingVehicleNum].GetComponent<CameraTarget>();
-        }
+        //if (Input.GetKeyDown(KeyCode.L)) {
+        //    _followingVehicleNum = (_followingVehicleNum + 1) % Vehicles.Count;
+        //    _camera.Target = Vehicles[_followingVehicleNum].GetComponent<CameraTarget>();
+        //}
     }
 }
